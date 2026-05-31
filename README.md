@@ -1,16 +1,16 @@
 <h1> Trabajo práctico N°4<h1>
 <h2>Historias de Usuarios (Usando Clases)</h2>
+-----------------------------------------------
 <h3>
   Integrantes:
-  Barrionuevo Santiago,
-  Carvajal Martín,
-  Pepi José Ignacio,
-  Torres Maximiliano.
-  
+- Barrionuevo Santiago,
+- Carvajal Martín,
+- Pepi José Ignacio,
+- Torres Maximiliano.
 </h3>
 
-1. Módulo del Profesor: Registro de Calificaciones
-Historia de Usuario 1
+1. <b> Módulo del Profesor: Registro de Calificaciones
+Historia de Usuario 1 </b>
 
 COMO profesor de la universidad
 
@@ -35,8 +35,8 @@ Criterios de Aceptación
 
         ENTONCES el sistema no debe guardar el cambio y debe mostrar un mensaje de error indicando los límites válidos de la calificación.
 
-2. Módulo del Estudiante: Consulta de Notas
-Historia de Usuario 2
+2. <b> Módulo del Estudiante: Consulta de Notas
+Historia de Usuario 2 </b>
 
 COMO estudiante universitario
 
@@ -53,8 +53,8 @@ Criterios de Aceptación
 
         ENTONCES el sistema debe mostrar una lista de las materias inscritas, el desglose de notas parciales y el promedio acumulado hasta el momento.
 
-3. Módulo de Administración: Cierre de Actas
-Historia de Usuario 3
+3. <b> Módulo de Administración: Cierre de Actas
+Historia de Usuario 3 </b>
 
 COMO director de carrera o administrador del sistema
 
@@ -71,8 +71,8 @@ Criterios de Aceptación
 
         ENTONCES el sistema debe cambiar el estado del acta a "Cerrada", bloquear la edición de notas para el profesor y enviar las calificaciones finales al boletín oficial del alumno.
 
-4. Módulo del Profesor: Modificación de Notas (Extemporánea)
-Historia de Usuario 4
+4. <b> Módulo del Profesor: Modificación de Notas (Extemporánea)
+Historia de Usuario 4 </b>
 
 COMO profesor de la universidad
 
