@@ -4,99 +4,104 @@
 
 /**
  * ISSUE 8: Sistema de Caja Negra y Reporte de Auditoría
- * Módulo Autónomo - Integrante 4 (Maxi)
- * 
- * Requisitos:
- * 1. Almacenar registros de manera estructurada en un array inmutable.
- * 2. Estampar ID único y fecha/hora exacta del servidor/sistema.
- * 3. Permitir filtrado de logs por materia para auditoría de directivos.
+ * Módulo Autónomo en Clase - Integrante 4 (Maxi)
  */
 
-// Simulación de nuestra base de datos interna y protegida de logs
-const BD_LOGS_AUDITORIA = [];
-
-function registrarEventoEnAuditoria(datosCambio) {
-    // Si la Issue 7 falló o no mandó datos, no registramos nada
-    if (!datosCambio) return null;
-
-    // Creamos el registro con la estampa de seguridad del SIU Quechua
-    const nuevoLog = {
-        idLog: "LOG-" + Math.floor(Math.random() * 90000 + 10000), // ID único de 5 dígitos
-        timestamp: new Date().toLocaleString(),                   // Fecha y hora exacta del cambio
-        alumno: datosCambio.alumnoId,
-        materia: datosCambio.materiaId,
-        evaluacion: datosCambio.evaluacion,
-        antes: datosCambio.notaVieja,
-        ahora: datosCambio.notaNueva,
-        justificacion: datosCambio.motivo
-    };
-
-    // Empujamos el registro al historial global
-    BD_LOGS_AUDITORIA.push(nuevoLog);
-    
-    console.log(`📌 [SIU Quechua] Evento de seguridad registrado con ID: ${nuevoLog.idLog}`);
-    return nuevoLog;
+// Esta clase define cómo es la estructura de un "Registro individual" en la bitácora
+class RegistroLog {
+    constructor(datosCambio) {
+        this.idLog = "LOG-" + Math.floor(Math.random() * 90000 + 10000); // ID único
+        this.timestamp = new Date().toLocaleString();                   // Fecha y hora del sistema
+        this.alumno = datosCambio.alumnoId;
+        this.materia = datosCambio.materiaId;
+        this.evaluacion = datosCambio.evaluacion;
+        this.antes = datosCambio.notaVieja;
+        this.ahora = datosCambio.notaNueva;
+        this.justificacion = datosCambio.motivo;
+    }
 }
 
-/**
- * Motor de búsqueda para directivos del SIU Quechua
- * Si se pasa un código de materia, filtra. Si no, devuelve todo el historial.
- */
-function generarReporteAuditoria(filtroMateria = null) {
-    if (BD_LOGS_AUDITORIA.length === 0) {
-        return "El historial de auditoría se encuentra vacío.";
+// Esta clase maneja la "Base de datos" y los reportes de auditoría
+class SistemaAuditoria {
+    constructor() {
+        // Cada instancia del sistema tendrá su propio array oculto de logs
+        this.bdLogs = [];
     }
 
-    if (filtroMateria) {
-        return BD_LOGS_AUDITORIA.filter(log => log.materia === filtroMateria);
+    /**
+     * Método para meter un nuevo log en el historial
+     */
+    registrarEvento(datosCambio) {
+        if (!datosCambio) return null;
+
+        // Creamos una nueva instancia de la clase RegistroLog
+        const nuevoLog = new RegistroLog(datosCambio);
+        
+        // Lo guardamos en el array de la clase
+        this.bdLogs.push(nuevoLog);
+        
+        console.log(`📌 [SIU Quechua] Evento de seguridad guardado en la clase Auditoría: ${nuevoLog.idLog}`);
+        return nuevoLog;
     }
-    
-    return BD_LOGS_AUDITORIA;
+
+    /**
+     * Método de filtrado para directivos
+     */
+    generarReporte(filtroMateria = null) {
+        if (this.bdLogs.length === 0) {
+            return "El historial de auditoría se encuentra vacío.";
+        }
+
+        if (filtroMateria) {
+            return this.bdLogs.filter(log => log.materia === filtroMateria);
+        }
+        
+        return this.bdLogs;
+    }
 }
 
 
 // =============================================================================
-// 🧪 BANCO DE PRUEBAS INTEGRADO (Para probar vos solo en Consola - F12)
+// 🧪 BANCO DE PRUEBAS CON CLASES (Para probar en Consola - F12)
 // =============================================================================
 
-console.log("%c🎓 --- PRUEBAS DE MÓDULO AUTÓNOMO: SIU QUECHUA ---", "color: #ffc107; font-weight: bold;");
+console.log("%c🎓 --- PRUEBAS DE POO (CLASES) INDEPENDIENTES: SIU QUECHUA ---", "color: #007bff; font-weight: bold;");
 
-// 1. Objeto de prueba simulando la estructura nativa que manejará el sistema
-let notaEjemplo = { 
+// 1. Instanciamos las clases de Maxi (Integrante 4) para usarlas
+const modicadorMódulo = new GestorModificaciones();
+const auditoriaMódulo = new SistemaAuditoria();
+
+// 2. Objeto de datos nativo para simular la nota
+let notaEjemploPOO = { 
     alumnoId: 202618, 
-    materiaId: "IPAS", // Introducción al Análisis Sistémico
+    materiaId: "IPAS", 
     evaluacionNombre: "Parcial 1", 
     nota: 2 
 };
 
-console.log("1. Estado inicial de la nota del alumno:", notaEjemplo.nota);
+console.log("Estado inicial de la nota:", notaEjemploPOO.nota);
 
-// ❌ TEST A: Intento de cambio fallido por justificación basura
-console.log("\n❌ Ejecutando Test A (Justificación corta)...");
-let testA = procesarModificacionNota(notaEjemplo, 7, "cambio nota", "Abierta");
-console.log("Resultado:", testA.mensaje);
+// ❌ TEST A: Justificación inválida (Llamando al método de la clase)
+console.log("\n❌ Ejecutando Test A (Texto corto)...");
+let resultadoA = modicadorMódulo.procesarModificacionNota(notaEjemploPOO, 7, "la rindió de nuevo", "Abierta");
+console.log("Resultado:", resultadoA.mensaje);
 
-// ❌ TEST B: Intento de cambio fallido por acta cerrada por bedelía
-console.log("\n❌ Ejecutando Test B (Acta Cerrada)...");
-let testB = procesarModificacionNota(notaEjemplo, 9, "El alumno recuperó el examen de forma excelente.", "Cerrada");
-console.log("Resultado:", testB.mensaje);
-
-//  TEST C: Modificación exitosa conectando Issue 7 con Issue 8
-console.log("\n Ejecutando Test C (Modificación Correcta)...");
-let testC = procesarModificacionNota(
-    notaEjemplo, 
-    8, 
-    "Error de tipeo del docente al pasar las notas de la planilla en papel.", 
+// 🚀 TEST B: Modificación Exitosa y Registro de Log usando las Clases
+console.log("\n Ejecutando Test B (Modificación Correcta)...");
+let resultadoB = modicadorMódulo.procesarModificacionNota(
+    notaEjemploPOO, 
+    9, 
+    "Error en la suma de puntos en la revisión del parcial físico.", 
     "Abierta"
 );
 
-console.log("Resultado:", testC.mensaje);
+console.log("Resultado:", resultadoB.mensaje);
 
-if (testC.exitoso) {
-    // Si tu Issue 7 le dio el OK, mandamos los datos directo a la bitácora de la Issue 8
-    registrarEventoEnAuditoria(testC.datosCambio);
+if (resultadoB.exitoso) {
+    // Le pasamos el paquete de datos al método de la clase de auditoría
+    auditoriaMódulo.registrarEvento(resultadoB.datosCambio);
 }
 
-// 📊 MOSTRAR REPORTE FINAL EN CONSOLA
-console.log("\n📊 --- REPORTE GENERAL DE AUDITORÍA DISPONIBLE ---");
-console.table(generarReporteAuditoria());
+// 📊 REPORTE DE LA CLASE DE AUDITORÍA
+console.log("\n📊 --- REPORTE LEÍDO DESDE LA CLASE 'SISTEMAAUDITORIA' ---");
+console.table(auditoriaMódulo.generarReporte());
