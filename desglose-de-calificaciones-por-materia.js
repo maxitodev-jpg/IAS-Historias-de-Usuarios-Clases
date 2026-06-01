@@ -1,6 +1,6 @@
 // Definición de las reglas de negocio para las condiciones de la materia
 const CONDICIONES = {
-    PROMOCIONADO: "Promocionado", // Promedio >= 7 y ninguna nota aplazada
+    PROMOCIONADO: "Promocionado", // Promedioo >= 7 y ninguna nota aplazada
     REGULAR: "Regular",           // Promedio >= 4 y < 7
     LIBRE: "Libre"                // Promedio < 4 o sin notas
 };
