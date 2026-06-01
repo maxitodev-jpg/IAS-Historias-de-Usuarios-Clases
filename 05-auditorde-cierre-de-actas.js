@@ -1,39 +1,45 @@
 /**
- * Revisa la planilla de una materia antes de permitir el cierre oficial.
- * @param {Object} objetoMateria - Objeto que contiene las evaluaciones configuradas y la lista de alumnos.
- * @returns {Object} { puedeCerrar: boolean, reportePendientes: Array<string> }
+ * Clase responsable del control y validación de actas antes de su cierre.
+ * (Solución al Issue #5: Auditor de Pre-Cierre de Actas)
  */
-function auditarCierreActa(objetoMateria) {
-    const reportePendientes = [];
+class AuditorActas {
+    /**
+     * Revisa la planilla de una materia antes de permitir el cierre oficial,
+     * asegurando que no haya casilleros vacíos en las evaluaciones obligatorias.
+     * * @param {Object} objetoMateria - Objeto con la lista de alumnos y evaluaciones.
+     * @returns {Object} Un objeto con el resultado { puedeCerrar: boolean, reportePendientes: array }
+     */
+    static auditarCierreActa(objetoMateria) {
+        const reportePendientes = [];
 
-    // 1. Obtener los IDs de las evaluaciones que son obligatorias
-    const evaluacionesObligatorias = objetoMateria.evaluaciones
-        .filter(evaluacion => evaluacion.obligatoria)
-        .map(evaluacion => evaluacion.id);
+        // 1. Obtener los IDs de las evaluaciones configuradas como obligatorias
+        const evaluacionesObligatorias = objetoMateria.evaluaciones
+            .filter(evaluacion => evaluacion.obligatoria)
+            .map(evaluacion => evaluacion.id);
 
-    // 2. Iterar por cada alumno para verificar sus notas
-    objetoMateria.alumnos.forEach(alumno => {
-        let leFaltaNota = false;
+        // 2. Cruzar la lista de evaluaciones contra las notas de cada alumno
+        objetoMateria.alumnos.forEach(alumno => {
+            let leFaltaNota = false;
 
-        // Comprobar cada evaluación obligatoria en el registro del alumno
-        evaluacionesObligatorias.forEach(evaluacionId => {
-            const notaRegistrada = alumno.notas[evaluacionId];
-            
-            // Validar si la nota es undefined, null o un string vacío
-            if (notaRegistrada === undefined || notaRegistrada === null || notaRegistrada === "") {
-                leFaltaNota = true;
+            evaluacionesObligatorias.forEach(evaluacionId => {
+                const notaRegistrada = alumno.notas[evaluacionId];
+                
+                // Criterio: se considera vacío si es undefined, null o un string vacío
+                if (notaRegistrada === undefined || notaRegistrada === null || notaRegistrada === "") {
+                    leFaltaNota = true;
+                }
+            });
+
+            // Si al alumno le falta alguna nota obligatoria, se añade su ID al reporte
+            if (leFaltaNota) {
+                reportePendientes.push(alumno.id);
             }
         });
 
-        // Si al alumno le falta al menos una nota obligatoria, va al reporte
-        if (leFaltaNota) {
-            reportePendientes.push(alumno.id);
-        }
-    });
-
-    // 3. Si el reporte tiene alumnos, significa que NO se puede cerrar
-    return {
-        puedeCerrar: reportePendientes.length === 0,
-        reportePendientes: reportePendientes
-    };
+        // 3. Retornar el veredicto final
+        return {
+            puedeCerrar: reportePendientes.length === 0,
+            reportePendientes: reportePendientes
+        };
+    }
 }
