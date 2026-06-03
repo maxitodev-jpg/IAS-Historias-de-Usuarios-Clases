@@ -1,5 +1,5 @@
 // =============================================================================
-// SIU QUECHUA - CONTROLADOR INTERACTIVO TOTAL (index.js)
+// SIU QUECHUA - SISTEMA DE TRADUCCIÓN UNIVERSAL + CONTROLADOR TOTAL
 // =============================================================================
 
 // --- 1. INSTANCIAS DE SEGURIDAD ---
@@ -49,7 +49,6 @@ document.getElementById("btn-cargar-nota").addEventListener("click", () => {
 
     if(!id || isNaN(nota)) return alertar("Campos vacíos o incorrectos", "alert-danger");
 
-    // Buscamos la última materia creada
     let matActual = materiasRegistradas[materiasRegistradas.length - 1];
     matActual.calificaciones.push({ estudianteId: id, nota: nota, evaluacionNombre: "Parcial 1" });
 
@@ -119,7 +118,6 @@ document.getElementById("btn-aplicar-mod").addEventListener("click", () => {
         }
     }
 
-    // Impactamos el cambio
     let notaVieja = notaObj.nota;
     notaObj.nota = nota;
     
@@ -287,228 +285,222 @@ if(getEl('registro-tipo')) getEl('registro-tipo').addEventListener('change', cam
 if(getEl('student-request-certificate')) getEl('student-request-certificate').addEventListener('click', solicitarCertificado);
 if(getEl('student-add-schedule')) getEl('student-add-schedule').addEventListener('click', agregarHorario);
 
+// =============================================================================
+// SISTEMA DE TRADUCCIÓN UNIVERSAL - 11 IDIOMAS COMPLETOS
+// =============================================================================
+
 const translations = {
     es: {
-        // NAVBAR
+        'siu-title': 'SIU Quechua - Panel de Control Total', 'consoleTitle': 'Salida de Consola Inmutable', 'consoleBadge': 'Logs Activos',
         navAlumno: 'Vista Alumno', navPerfil: 'Mi Perfil', navAjustes: 'Ajustes', btnCerrar: 'Cerrar sesión',
-        // PANEL HERO
-        studentBadge: 'Panel Estudiante', studentWelcome: 'Bienvenido,', studentRole: 'Rol', studentRoleValue: 'Alumno',
-        studentHint: 'Tus materias, notas y responsabilidades académicas aquí.',
-        // TARJETAS
-        studentPerformance: 'Mi rendimiento', perfHint: 'Promedio general', perfEmpty: 'Calculando...',
-        studentExams: 'Próximos exámenes', examEmpty: 'Sin exámenes disponibles.',
-        studentAttendance: 'Asistencias', attenEmpty: 'Sin inasistencias registradas.',
-        cardHorario: 'Horario semanal', schedHint: 'Repasa tus clases', schedEmpty: 'Cargando horarios...',
-        cardCertificados: 'Certificados', certHint: 'Descarga tus constancias', certEmpty: 'No tienes certificados recientes.',
-        cardConfiguracion: 'Configuraciones', confHint: 'Preferencias personales',
-        // MÓDULOS MENU
-        modulosTitle: 'Módulos del Sistema',
-        moduloMateria: '1. Creación de Materias', moduloNotas: '2. Carga de Notas Base',
-        moduloPromedios: '3 y 4. Motor de Promedios', moduloSeguridad: '5 y 6. Cierre y Seguridad',
-        moduloModificaciones: '7 y 8. Modificaciones', moduloProfesores: 'Gestión Profesor',
-        // PANEL 1 - MATERIAS
-        panelMateriaTitle: 'Motor de Creación y Configuración', materiaNombre: 'Nombre de la Materia',
-        materiaNombreHint: 'Introducción al Análisis Sistémico', materiaEscala: 'Escala Mínima / Máxima',
-        btnCrearMateria: 'Configurar e Instanciar Materia',
-        // PANEL 2 - NOTAS
-        panelNotasTitle: 'Gestor de Notas Ordinario', cargaAlumnoId: 'ID Alumno', cargaAlumnoHint: 'Ej: 101',
-        cargaNotaValor: 'Nota Obtenida', cargaNotaHint: '1 al 10', btnCargarNota: 'Registrar Nota en Acta',
-        // PANEL 3 - PROMEDIOS
-        panelPromediosTitle: 'Cálculo de Promedios y Desglose', promedioAlumnoId: 'ID Alumno a Consultar',
-        btnCalcularPromedio: 'Calcular Condición y Promedio', btnDesgloseMateria: 'Ver Desglose de Calificaciones',
-        // PANEL 4 - SEGURIDAD
-        panelSeguridadTitle: 'Auditor de Cierre de Actas', estadoActa: 'Estado de Acta del Ciclo',
-        estadoActaAbierta: 'Abierta (Permite Edición)', estadoActaCerrada: 'Cerrada (Bloqueada)',
-        btnBloquearActa: 'Simular Cierre Definitivo', btnTestSeguridad: 'Test Anti-Modificación',
-        // PANEL 5 - MODIFICACIONES
-        panelModificacionesTitle: 'Edición Extemporánea Justificada', modAlumnoId: 'ID Alumno',
-        modNotaNueva: 'Nueva Nota', modMotivo: 'Justificación Obligatoria', modMotivoHint: 'Mínimo 15 caracteres...',
-        btnAplicarMod: 'Aplicar Cambio Justificado',
-        // PANEL PROFESOR
-        panelProfesoresTitle: 'Gestión de Profesores', profFormTitle: 'Crear cuenta de profesor',
-        profName: 'Nombre', profEmail: 'Email', profUsername: 'Usuario', profPassword: 'Contraseña',
-        btnCrearProfesor: 'Crear Profesor', registroFormTitle: 'Registrar Exámenes / Asistencias',
-        registroAlumnoId: 'ID Alumno', registroMateria: 'Materia', registroFecha: 'Fecha', registroTipo: 'Tipo',
-        registroExam: 'Examen', registroAttendance: 'Asistencia', registroNota: 'Nota', registroNotaHint: '0-10',
-        registroPresente: 'Estado', registroPresent: 'Presente', registroAbsent: 'Ausente', btnRegistrarAcciones: 'Registrar',
-        // CONSOLE
-        btnLimpiarConsola: 'Limpiar Consola',
-        // OFFCANVAS
-        offcanvasAlumnoTitle: 'Vista del Alumno', alumnoIdInput: 'ID Alumno', alumnoIdHint: 'Ej: 777',
-        btnAlumnoBuscar: 'Buscar', tabNotas: 'Notas', tabInasistencias: 'Inasistencias', tabExamenes: 'Exámenes',
-        tabHorarios: 'Horarios', tablaMateria: 'Materia', tablaEvaluacion: 'Evaluación', tablaNota: 'Nota',
-        notasEmpty: 'Ingrese un ID y presione Buscar.', btnAlumnoExportar: 'Exportar CSV', btnAlumnoImprimir: 'Imprimir',
-        // PROFILE MODAL
-        profileModalTitle: 'Mi Perfil', profileFoto: 'Foto (opcional)', profileNombre: 'Nombre',
-        profileEmail: 'Email', profilePassword: 'Contraseña (nueva)', profileSave: 'Guardar',
-        // SETTINGS MODAL
-        settingsTitle: 'Ajustes del Sistema', settingsLanguageLabel: 'Idioma de la aplicación',
-        settingsThemeLabel: 'Modo oscuro', settingsNotificationsLabel: 'Notificaciones activas',
-        settingsSaveBtn: 'Guardar ajustes', settingsSaved: 'Ajustes guardados.',
-        // BOTONES Y LINKS
-        certificadoBtn: 'Solicitar', idiomaLabel: 'Cambiar idioma', addScheduleBtn: 'Agregar clase',
-        verDetalles: 'Ver detalles', buscarBtn: 'Buscar', exportarBtn: 'Exportar CSV', imprimirBtn: 'Imprimir',
-        cardCrearProfesor: 'Crear cuenta de profesor', cardRegistrar: 'Registrar Exámenes / Asistencias',
-        // MENSAJES
-        msgGradesSearchHint: 'Busca tu ID para ver tus calificaciones.', msgNoNotes: 'No tienes certificados recientes.',
-        msgNoSchedule: 'Horario no disponible.', msgNoExamsAvailable: 'Sin exámenes disponibles.',
-        msgNoAbsentees: 'Perfecto, sin inasistencias.', msgInvalidId: 'Ingresa un ID válido',
-        msgEmptyFields: 'Completa todos los campos.', msgInvalidNote: 'Ingresa una nota válida.',
-        msgSuccess: 'Guardado exitosamente.',
+        'opt-es': 'Español', 'opt-qu': 'Quechua', 'opt-gn': 'Guaraní', 'opt-arn': 'Mapuche', 'opt-ay': 'Aimara', 'opt-ar': 'Arameo', 'opt-so': 'Somalí', 'opt-la': 'Latín', 'opt-vl': 'Villero', 'opt-pp': 'PaiPai', 'opt-dog': 'Idioma Perro',
+        studentBadge: 'Panel Estudiante', studentWelcome: 'Bienvenido,', studentRole: 'Rol', studentRoleValue: 'Alumno', studentHint: 'Tus materias, notas y responsabilidades académicas aquí.',
+        studentPerformance: 'Mi rendimiento', perfHint: 'Promedio general', studentExams: 'Próximos exámenes', examEmpty: 'Sin exámenes disponibles.', studentAttendance: 'Asistencias', attenEmpty: 'Sin inasistencias registradas.', cardHorario: 'Horario semanal', schedHint: 'Repasa tus clases', schedEmpty: 'Cargando horarios...', cardCertificados: 'Certificados', certHint: 'Descarga tus constancias', certEmpty: 'No tienes certificados recientes.', cardConfiguracion: 'Configuraciones', confHint: 'Preferencias personales',
+        modulosTitle: 'Módulos del Sistema', moduloMateria: '1. Creación de Materias', moduloNotas: '2. Carga de Notas Base', moduloPromedios: '3 y 4. Motor de Promedios', moduloSeguridad: '5 y 6. Cierre y Seguridad', moduloModificaciones: '7 y 8. Modificaciones', moduloProfesores: 'Gestión Profesor',
+        panelMateriaTitle: 'Motor de Creación y Configuración', materiaNombre: 'Nombre de la Materia', materiaNombreHint: 'Introducción al Análisis Sistémico', materiaEscala: 'Escala Mínima / Máxima', btnCrearMateria: 'Configurar e Instanciar Materia',
+        panelNotasTitle: 'Gestor de Notas Ordinario', cargaAlumnoId: 'ID Alumno', cargaAlumnoHint: 'Ej: 101', cargaNotaValor: 'Nota Obtenida', cargaNotaHint: '1 al 10', btnCargarNota: 'Registrar Nota en Acta',
+        panelPromediosTitle: 'Cálculo de Promedios y Desglose', promedioAlumnoId: 'ID Alumno a Consultar', btnCalcularPromedio: 'Calcular Condición y Promedio', btnDesgloseMateria: 'Ver Desglose de Calificaciones',
+        panelSeguridadTitle: 'Auditor de Cierre de Actas', estadoActa: 'Estado de Acta del Ciclo', estadoActaAbierta: 'Abierta (Permite Edición)', estadoActaCerrada: 'Cerrada (Bloqueada)', btnBloquearActa: 'Simular Cierre Definitivo de Acta', btnTestSeguridad: 'Forzar Test de Ataque (Anti-Modificación)',
+        panelModificacionesTitle: 'Edición Extemporánea Justificada', modAlumnoId: 'ID Alumno', modNotaNueva: 'Nueva Nota', modMotivo: 'Justificación Obligatoria', modMotivoHint: 'Mínimo 15 caracteres...', btnAplicarMod: 'Aplicar Cambio Justificado',
+        panelProfesoresTitle: 'Gestión de Profesores', profFormTitle: 'Crear cuenta de profesor', profName: 'Nombre', profEmail: 'Email', profUsername: 'Usuario', profPassword: 'Contraseña', btnCrearProfesor: 'Crear Profesor', registroFormTitle: 'Registrar Exámenes / Asistencias', registroAlumnoId: 'ID Alumno', registroMateria: 'Materia', registroFecha: 'Fecha', registroTipo: 'Tipo', registroExam: 'Examen', registroAttendance: 'Asistencia', registroNota: 'Nota', registroNotaHint: '0-10', registroPresente: 'Estado', registroPresent: 'Presente', registroAbsent: 'Ausente', btnRegistrarAcciones: 'Registrar',
+        btnLimpiarConsola: 'Limpiar Consola', certificadoBtn: 'Solicitar', idiomaLabel: 'Cambiar idioma', addScheduleBtn: 'Agregar clase', verDetalles: 'Ver detalles',
+        msgGradesSearchHint: 'Busca tu ID para ver tus calificaciones.', msgNoNotes: 'No tienes certificados recientes.', msgNoSchedule: 'Horario no disponible.', msgNoExamsAvailable: 'Sin exámenes disponibles.', msgNoAbsentees: 'Perfecto, sin inasistencias.', msgInvalidId: 'Ingresa un ID válido', msgEmptyFields: 'Completa todos los campos.', msgInvalidNote: 'Ingresa una nota válida.', msgSuccess: 'Guardado exitosamente.',
     },
     qu: {
+        'siu-title': 'SIU Quechua - Kontrol Panelistin', 'consoleTitle': 'Konsolaren Irtidura Ezabatzaile', 'consoleBadge': 'Log Aktiboak',
         navAlumno: 'Ruwanqa Yachay', navPerfil: 'Ñuqanchik Perfil', navAjustes: 'Ajustes', btnCerrar: 'Pachaymanta',
-        studentBadge: 'Rimaykuna Qillqa', studentWelcome: 'Ripuy,', studentPerformance: 'Ñawpaq llantakuy',
-        studentExams: 'Rikhuriykuna', studentAttendance: 'Asistihina', cardHorario: "Ch'usaywapa Rikhuy",
-        cardCertificados: 'Kutichiykuna', cardConfiguracion: "Llamk'aykuna", cardCrearProfesor: 'Yachachiq ruwasqa',
-        cardRegistrar: 'Yachachiy qillqay / Asistiriy', certificadoBtn: 'Puriy', idiomaLabel: 'Simi rimaylla',
-        settingsTitle: 'Ajustes del Sistema', settingsLanguageLabel: 'Idioma de la aplicación',
-        settingsThemeLabel: 'Modo oscuro', settingsNotificationsLabel: 'Notificaciones activas',
-        settingsSaveBtn: 'Guardar ajustes', addScheduleBtn: 'Rimay yana', verDetalles: 'Rikuy',
-        buscarBtn: 'Masiy', exportarBtn: 'CSV ama', imprimirBtn: 'Qillqay',
+        'opt-es': 'Español', 'opt-qu': 'Quechua', 'opt-gn': 'Guaraní', 'opt-arn': 'Mapuche', 'opt-ay': 'Aimara', 'opt-ar': 'Arameo', 'opt-so': 'Somalí', 'opt-la': 'Latín', 'opt-vl': 'Villero', 'opt-pp': 'PaiPai', 'opt-dog': 'Idioma Perro',
+        studentBadge: 'Rimaykuna Qillqa', studentWelcome: 'Ripuy,', studentRole: 'Rol', studentRoleValue: 'Yachakuq', studentHint: 'Rimaykunayki, notas, responsabilidadkunayki.',
+        studentPerformance: 'Ñawpaq llantakuy', perfHint: 'Promedio', studentExams: 'Rikhuriykuna', examEmpty: 'Mana rikhuriykuna.', studentAttendance: 'Asistihina', attenEmpty: 'Mana asistihina.', cardHorario: "Ch'usaywapa Rikhuy", schedHint: 'Rimaykunata rikuy', schedEmpty: 'Rimaykunata chariyachikuy...', cardCertificados: 'Kutichiykuna', certHint: 'Descarga tus constancias', certEmpty: 'Mana kutichiykunayki.', cardConfiguracion: "Llamk'aykuna", confHint: 'Preferencias personales',
+        modulosTitle: 'Modulos', moduloMateria: '1. Rimay ruway', moduloNotas: '2. Notas kariy', moduloPromedios: '3 y 4. Promedio', moduloSeguridad: '5 y 6. Seguridad', moduloModificaciones: '7 y 8. Modificaciones', moduloProfesores: 'Yachachiq Llamk\'ay',
+        panelMateriaTitle: 'Rimay ruway', materiaNombre: 'Rimay sutiy', materiaNombreHint: 'Rimay sutiy', materiaEscala: 'Escala', btnCrearMateria: 'Rimay ruway',
+        panelNotasTitle: 'Notas Llamk\'ay', cargaAlumnoId: 'ID Yachakuq', cargaAlumnoHint: 'Ej: 101', cargaNotaValor: 'Nota', cargaNotaHint: '1 al 10', btnCargarNota: 'Notas kariy',
+        panelPromediosTitle: 'Promedio Rikchay', promedioAlumnoId: 'ID Yachakuq', btnCalcularPromedio: 'Promedio Rikchay', btnDesgloseMateria: 'Desglose rikuy',
+        panelSeguridadTitle: 'Seguridad', estadoActa: 'Estado', estadoActaAbierta: 'Abierta', estadoActaCerrada: 'Cerrada', btnBloquearActa: 'Bloquear', btnTestSeguridad: 'Test Seguridad',
+        panelModificacionesTitle: 'Modificaciones', modAlumnoId: 'ID Yachakuq', modNotaNueva: 'Nota Nueva', modMotivo: 'Justificacion', modMotivoHint: 'Justificacion', btnAplicarMod: 'Aplicar',
+        panelProfesoresTitle: 'Yachachiq Llamk\'ay', profFormTitle: 'Yachachiq ruway', profName: 'Sutiy', profEmail: 'Email', profUsername: 'Usuario', profPassword: 'Rimapuy', btnCrearProfesor: 'Yachachiq ruway', registroFormTitle: 'Rikhuriykuna', registroAlumnoId: 'ID', registroMateria: 'Materia', registroFecha: 'Pacha', registroTipo: 'Tipo', registroExam: 'Rikhuriy', registroAttendance: 'Asistencia', registroNota: 'Nota', registroNotaHint: '0-10', registroPresente: 'Estado', registroPresent: 'Presente', registroAbsent: 'Ausente', btnRegistrarAcciones: 'Kariy',
+        btnLimpiarConsola: 'Limpiay', certificadoBtn: 'Puriy', idiomaLabel: 'Simi rimaylla', addScheduleBtn: 'Rimay yapay', verDetalles: 'Rikuy',
+        msgGradesSearchHint: 'Masiy ID', msgNoNotes: 'Mana kutichiykunayki.', msgNoSchedule: 'Mana rimaykunayki.', msgNoExamsAvailable: 'Mana rikhuriykuna.', msgNoAbsentees: 'Allinlla, mana asistihina.', msgInvalidId: 'ID allin', msgEmptyFields: 'Llena campos', msgInvalidNote: 'Nota allin', msgSuccess: 'Allinlla',
     },
     gn: {
+        'siu-title': 'SIU Quechua - Kontrola Panel Oĩ', 'consoleTitle': 'Konsolaren Irteera Betetzaile', 'consoleBadge': 'Log Aktiboak',
         navAlumno: 'Rire Ñandúva', navPerfil: 'Che Perfil', navAjustes: 'Ñemboheko', btnCerrar: 'Oñemoĩ',
-        studentBadge: 'Panel Estudiante', studentWelcome: 'Tereg̃ui,', studentPerformance: 'Che Rire',
-        studentExams: 'Prueba', studentAttendance: 'Asistencia', cardHorario: 'Momenta',
-        cardCertificados: 'Certificado', cardConfiguracion: 'Ñemboheko', cardCrearProfesor: 'Mbo\'e',
-        cardRegistrar: 'Rexaka Prueba', certificadoBtn: 'Mbopu', idiomaLabel: 'Ñe\'ẽ',
-        settingsTitle: 'Ñemboheko', settingsLanguageLabel: 'Ñe\'ẽ',
-        settingsThemeLabel: 'Poru Akã', settingsNotificationsLabel: 'Hekura',
-        settingsSaveBtn: 'Ñongatu', addScheduleBtn: 'Moĩ', verDetalles: 'Rikuaa',
-        buscarBtn: 'Heka', exportarBtn: 'CSV', imprimirBtn: 'Rexaka',
+        'opt-es': 'Español', 'opt-qu': 'Quechua', 'opt-gn': 'Guaraní', 'opt-arn': 'Mapuche', 'opt-ay': 'Aimara', 'opt-ar': 'Arameo', 'opt-so': 'Somalí', 'opt-la': 'Latín', 'opt-vl': 'Villero', 'opt-pp': 'PaiPai', 'opt-dog': 'Idioma Perro',
+        studentBadge: 'Panel', studentWelcome: 'Tereg̃ui,', studentRole: 'Rol', studentRoleValue: 'Mbo\'e\'ỹ', studentHint: 'Che rire, notas, responsabilidade.',
+        studentPerformance: 'Che Rire', perfHint: 'Promedio', studentExams: 'Prueba', examEmpty: 'Nda\'e prueba', studentAttendance: 'Asistencia', attenEmpty: 'Nda\'e falta', cardHorario: 'Momenta', schedHint: 'Rire rikuaa', schedEmpty: 'Cargando...', cardCertificados: 'Certificado', certHint: 'Descarga certificado', certEmpty: 'Nda\'e certificado', cardConfiguracion: 'Ñemboheko', confHint: 'Preferencias',
+        modulosTitle: 'Modulos', moduloMateria: '1. Rire', moduloNotas: '2. Notas', moduloPromedios: '3 y 4. Promedio', moduloSeguridad: '5 y 6. Seguridad', moduloModificaciones: '7 y 8. Cambio', moduloProfesores: 'Mbo\'e',
+        panelMateriaTitle: 'Rire Ñemboheko', materiaNombre: 'Rire', materiaNombreHint: 'Rire', materiaEscala: 'Escala', btnCrearMateria: 'Crear',
+        panelNotasTitle: 'Notas', cargaAlumnoId: 'ID', cargaAlumnoHint: 'Ej: 101', cargaNotaValor: 'Nota', cargaNotaHint: '1 al 10', btnCargarNota: 'Registrar',
+        panelPromediosTitle: 'Promedio', promedioAlumnoId: 'ID', btnCalcularPromedio: 'Calcular', btnDesgloseMateria: 'Ver',
+        panelSeguridadTitle: 'Seguridad', estadoActa: 'Estado', estadoActaAbierta: 'Abierta', estadoActaCerrada: 'Cerrada', btnBloquearActa: 'Bloquear', btnTestSeguridad: 'Test',
+        panelModificacionesTitle: 'Cambio', modAlumnoId: 'ID', modNotaNueva: 'Nota Nueva', modMotivo: 'Razon', modMotivoHint: 'Razon', btnAplicarMod: 'Aplicar',
+        panelProfesoresTitle: 'Mbo\'e', profFormTitle: 'Mbo\'e Crear', profName: 'Nombre', profEmail: 'Email', profUsername: 'Usuario', profPassword: 'Contraseña', btnCrearProfesor: 'Crear', registroFormTitle: 'Prueba', registroAlumnoId: 'ID', registroMateria: 'Rire', registroFecha: 'Fecha', registroTipo: 'Tipo', registroExam: 'Prueba', registroAttendance: 'Asistencia', registroNota: 'Nota', registroNotaHint: '0-10', registroPresente: 'Estado', registroPresent: 'Presente', registroAbsent: 'Ausente', btnRegistrarAcciones: 'Registrar',
+        btnLimpiarConsola: 'Limpiar', certificadoBtn: 'Mbopu', idiomaLabel: 'Ñe\'ẽ', addScheduleBtn: 'Moĩ', verDetalles: 'Rikuaa',
+        msgGradesSearchHint: 'Ingrese ID', msgNoNotes: 'Nda\'e certificado', msgNoSchedule: 'Nda\'e hora', msgNoExamsAvailable: 'Nda\'e prueba', msgNoAbsentees: 'Allin', msgInvalidId: 'ID allin', msgEmptyFields: 'Complete campos', msgInvalidNote: 'Nota allin', msgSuccess: 'Allin',
     },
     arn: {
+        'siu-title': 'SIU Quechua - Ruka Mapuche Kontrol', 'consoleTitle': 'Konsolaren Irteera', 'consoleBadge': 'Log Aktibo',
         navAlumno: 'Ruka Mapuche', navPerfil: 'Mi Pewma', navAjustes: 'Küme', btnCerrar: 'Marichi',
-        studentBadge: 'Casa Estudiante', studentWelcome: 'Kidu,', studentPerformance: 'Mi Toki',
-        studentExams: 'Kawelikan', studentAttendance: 'Asistencia', cardHorario: 'Antü',
-        cardCertificados: 'Kutral', cardConfiguracion: 'Küme', cardCrearProfesor: 'Longko',
-        cardRegistrar: 'Kawelikan', certificadoBtn: 'Ñi', idiomaLabel: 'Mapudungun',
-        settingsTitle: 'Küme', settingsLanguageLabel: 'Mapudungun',
-        settingsThemeLabel: 'Pü Akú', settingsNotificationsLabel: 'Trom',
-        settingsSaveBtn: 'Kawelu', addScheduleBtn: 'Molli', verDetalles: 'Rikun',
-        buscarBtn: 'Domo', exportarBtn: 'CSV', imprimirBtn: 'Kawelu',
+        'opt-es': 'Español', 'opt-qu': 'Quechua', 'opt-gn': 'Guaraní', 'opt-arn': 'Mapuche', 'opt-ay': 'Aimara', 'opt-ar': 'Arameo', 'opt-so': 'Somalí', 'opt-la': 'Latín', 'opt-vl': 'Villero', 'opt-pp': 'PaiPai', 'opt-dog': 'Idioma Perro',
+        studentBadge: 'Casa', studentWelcome: 'Kidu,', studentRole: 'Rol', studentRoleValue: 'Longko', studentHint: 'Mi ruka, notas, toki.',
+        studentPerformance: 'Mi Toki', perfHint: 'Promedio', studentExams: 'Kawelikan', examEmpty: 'Nda kawelikan', studentAttendance: 'Asistencia', attenEmpty: 'Nda falta', cardHorario: 'Antü', schedHint: 'Ruka rikun', schedEmpty: 'Cargando...', cardCertificados: 'Kutral', certHint: 'Kutral', certEmpty: 'Nda kutral', cardConfiguracion: 'Küme', confHint: 'Küme',
+        modulosTitle: 'Modulos', moduloMateria: '1. Ruka', moduloNotas: '2. Notas', moduloPromedios: '3 y 4. Promedio', moduloSeguridad: '5 y 6. Seguridad', moduloModificaciones: '7 y 8. Trokiñ', moduloProfesores: 'Longko',
+        panelMateriaTitle: 'Ruka Küme', materiaNombre: 'Ruka', materiaNombreHint: 'Ruka', materiaEscala: 'Escala', btnCrearMateria: 'Crear',
+        panelNotasTitle: 'Notas', cargaAlumnoId: 'ID', cargaAlumnoHint: 'Ej: 101', cargaNotaValor: 'Nota', cargaNotaHint: '1 al 10', btnCargarNota: 'Registrar',
+        panelPromediosTitle: 'Promedio', promedioAlumnoId: 'ID', btnCalcularPromedio: 'Calcular', btnDesgloseMateria: 'Ver',
+        panelSeguridadTitle: 'Seguridad', estadoActa: 'Estado', estadoActaAbierta: 'Abierta', estadoActaCerrada: 'Cerrada', btnBloquearActa: 'Bloquear', btnTestSeguridad: 'Test',
+        panelModificacionesTitle: 'Trokiñ', modAlumnoId: 'ID', modNotaNueva: 'Nota Nueva', modMotivo: 'Razon', modMotivoHint: 'Razon', btnAplicarMod: 'Aplicar',
+        panelProfesoresTitle: 'Longko', profFormTitle: 'Longko Crear', profName: 'Nombre', profEmail: 'Email', profUsername: 'Usuario', profPassword: 'Contraseña', btnCrearProfesor: 'Crear', registroFormTitle: 'Kawelikan', registroAlumnoId: 'ID', registroMateria: 'Ruka', registroFecha: 'Fecha', registroTipo: 'Tipo', registroExam: 'Kawelikan', registroAttendance: 'Asistencia', registroNota: 'Nota', registroNotaHint: '0-10', registroPresente: 'Estado', registroPresent: 'Presente', registroAbsent: 'Ausente', btnRegistrarAcciones: 'Registrar',
+        btnLimpiarConsola: 'Limpiar', certificadoBtn: 'Ñi', idiomaLabel: 'Mapudungun', addScheduleBtn: 'Molli', verDetalles: 'Rikun',
+        msgGradesSearchHint: 'Ingrese ID', msgNoNotes: 'Nda kutral', msgNoSchedule: 'Nda antü', msgNoExamsAvailable: 'Nda kawelikan', msgNoAbsentees: 'Allin', msgInvalidId: 'ID allin', msgEmptyFields: 'Complete campos', msgInvalidNote: 'Nota allin', msgSuccess: 'Allin',
     },
     ay: {
-        navAlumno: 'Estudiante Yatiqawi', navPerfil: 'Ñamarka', navAjustes: 'Sartataña', btnCerrar: 'Jupina',
-        studentBadge: 'Panel Estudiante', studentWelcome: 'Napayalla,', studentPerformance: 'Yatiqawi',
-        studentExams: 'Yatiqawi Nayta', studentAttendance: 'Aru', cardHorario: 'Pacha',
-        cardCertificados: 'Pataka', cardConfiguracion: 'Sartataña', cardCrearProfesor: 'Yatichiri',
-        cardRegistrar: 'Yatiqawi', certificadoBtn: 'Thakhi', idiomaLabel: 'Aymara',
-        settingsTitle: 'Sartataña', settingsLanguageLabel: 'Aymara',
-        settingsThemeLabel: 'Layu', settingsNotificationsLabel: 'Kawaru',
-        settingsSaveBtn: 'Jap\'i', addScheduleBtn: 'Yapa', verDetalles: 'Rikha',
-        buscarBtn: 'Tayka', exportarBtn: 'CSV', imprimirBtn: 'Jap\'i',
+        'siu-title': 'SIU Quechua - Panel Kontrol Aymara', 'consoleTitle': 'Konsolaña Irtida', 'consoleBadge': 'Log Aktiba',
+        navAlumno: 'Estudiante', navPerfil: 'Ñamarka', navAjustes: 'Sartataña', btnCerrar: 'Jupina',
+        'opt-es': 'Español', 'opt-qu': 'Quechua', 'opt-gn': 'Guaraní', 'opt-arn': 'Mapuche', 'opt-ay': 'Aimara', 'opt-ar': 'Arameo', 'opt-so': 'Somalí', 'opt-la': 'Latín', 'opt-vl': 'Villero', 'opt-pp': 'PaiPai', 'opt-dog': 'Idioma Perro',
+        studentBadge: 'Panel', studentWelcome: 'Napayalla,', studentRole: 'Rol', studentRoleValue: 'Yatiqawi', studentHint: 'Yatiqawin, notas, responsabilidade.',
+        studentPerformance: 'Yatiqawi', perfHint: 'Promedio', studentExams: 'Nayta', examEmpty: 'Mana nayta', studentAttendance: 'Aru', attenEmpty: 'Mana aru', cardHorario: 'Pacha', schedHint: 'Pacha rikha', schedEmpty: 'Cargando...', cardCertificados: 'Pataka', certHint: 'Pataka', certEmpty: 'Mana pataka', cardConfiguracion: 'Sartataña', confHint: 'Sartataña',
+        modulosTitle: 'Modulos', moduloMateria: '1. Yatiqawi', moduloNotas: '2. Notas', moduloPromedios: '3 y 4. Promedio', moduloSeguridad: '5 y 6. Seguridad', moduloModificaciones: '7 y 8. Alteri', moduloProfesores: 'Yatichiri',
+        panelMateriaTitle: 'Yatiqawi', materiaNombre: 'Yatiqawi', materiaNombreHint: 'Yatiqawi', materiaEscala: 'Escala', btnCrearMateria: 'Crear',
+        panelNotasTitle: 'Notas', cargaAlumnoId: 'ID', cargaAlumnoHint: 'Ej: 101', cargaNotaValor: 'Nota', cargaNotaHint: '1 al 10', btnCargarNota: 'Registrar',
+        panelPromediosTitle: 'Promedio', promedioAlumnoId: 'ID', btnCalcularPromedio: 'Calcular', btnDesgloseMateria: 'Ver',
+        panelSeguridadTitle: 'Seguridad', estadoActa: 'Estado', estadoActaAbierta: 'Abierta', estadoActaCerrada: 'Cerrada', btnBloquearActa: 'Bloquear', btnTestSeguridad: 'Test',
+        panelModificacionesTitle: 'Alteri', modAlumnoId: 'ID', modNotaNueva: 'Nota Nueva', modMotivo: 'Razon', modMotivoHint: 'Razon', btnAplicarMod: 'Aplicar',
+        panelProfesoresTitle: 'Yatichiri', profFormTitle: 'Yatichiri', profName: 'Nombre', profEmail: 'Email', profUsername: 'Usuario', profPassword: 'Contraseña', btnCrearProfesor: 'Crear', registroFormTitle: 'Nayta', registroAlumnoId: 'ID', registroMateria: 'Materia', registroFecha: 'Fecha', registroTipo: 'Tipo', registroExam: 'Nayta', registroAttendance: 'Asistencia', registroNota: 'Nota', registroNotaHint: '0-10', registroPresente: 'Estado', registroPresent: 'Presente', registroAbsent: 'Ausente', btnRegistrarAcciones: 'Registrar',
+        btnLimpiarConsola: 'Limpiar', certificadoBtn: 'Thakhi', idiomaLabel: 'Aymara', addScheduleBtn: 'Yapa', verDetalles: 'Rikha',
+        msgGradesSearchHint: 'Ingrese ID', msgNoNotes: 'Mana pataka', msgNoSchedule: 'Mana pacha', msgNoExamsAvailable: 'Mana nayta', msgNoAbsentees: 'Allin', msgInvalidId: 'ID allin', msgEmptyFields: 'Complete campos', msgInvalidNote: 'Nota allin', msgSuccess: 'Allin',
     },
     ar: {
-        navAlumno: 'Schola Alumnus', navPerfil: 'Meum Profilio', navAjustes: 'Configuratio', btnCerrar: 'Vale',
-        studentBadge: 'Tabula Scholaris', studentWelcome: 'Salve,', studentPerformance: 'Meae Virtutes',
-        studentExams: 'Examinationes', studentAttendance: 'Praesentia', cardHorario: 'Hora',
-        cardCertificados: 'Testimonia', cardConfiguracion: 'Configuratio', cardCrearProfesor: 'Magister',
-        cardRegistrar: 'Registrare', certificadoBtn: 'Petere', idiomaLabel: 'Lingua Aramaica',
-        settingsTitle: 'Configuratio', settingsLanguageLabel: 'Lingua',
-        settingsThemeLabel: 'Obscuritas', settingsNotificationsLabel: 'Notificationes',
-        settingsSaveBtn: 'Servare', addScheduleBtn: 'Addere', verDetalles: 'Videre',
-        buscarBtn: 'Quaerere', exportarBtn: 'CSV', imprimirBtn: 'Imprimere',
+        'siu-title': 'SIU Quechua - Tabula Kontrolis', 'consoleTitle': 'Consolae Exitus Indelebis', 'consoleBadge': 'Logs Activa',
+        navAlumno: 'Schola', navPerfil: 'Profilio', navAjustes: 'Configuratio', btnCerrar: 'Vale',
+        'opt-es': 'Español', 'opt-qu': 'Quechua', 'opt-gn': 'Guaraní', 'opt-arn': 'Mapuche', 'opt-ay': 'Aimara', 'opt-ar': 'Arameo', 'opt-so': 'Somalí', 'opt-la': 'Latín', 'opt-vl': 'Villero', 'opt-pp': 'PaiPai', 'opt-dog': 'Idioma Perro',
+        studentBadge: 'Tabula', studentWelcome: 'Salve,', studentRole: 'Rol', studentRoleValue: 'Alumnus', studentHint: 'Tuae disciplinae, notae, obligationes.',
+        studentPerformance: 'Meae Virtutes', perfHint: 'Promedio', studentExams: 'Examinationes', examEmpty: 'Nulla examinatio', studentAttendance: 'Praesentia', attenEmpty: 'Perfecta praesentia', cardHorario: 'Hora', schedHint: 'Hora revisum', schedEmpty: 'Cargando...', cardCertificados: 'Testimonia', certHint: 'Testimonia', certEmpty: 'Nulla testimonia', cardConfiguracion: 'Configuratio', confHint: 'Configuratio',
+        modulosTitle: 'Moduli', moduloMateria: '1. Creatio', moduloNotas: '2. Notae', moduloPromedios: '3 et 4. Promedio', moduloSeguridad: '5 et 6. Securitas', moduloModificaciones: '7 et 8. Mutationes', moduloProfesores: 'Magistri',
+        panelMateriaTitle: 'Creatio', materiaNombre: 'Nomen', materiaNombreHint: 'Nomen', materiaEscala: 'Scala', btnCrearMateria: 'Creare',
+        panelNotasTitle: 'Notae', cargaAlumnoId: 'ID', cargaAlumnoHint: 'Ex: 101', cargaNotaValor: 'Nota', cargaNotaHint: '1 ad 10', btnCargarNota: 'Registrare',
+        panelPromediosTitle: 'Promedio', promedioAlumnoId: 'ID', btnCalcularPromedio: 'Calculare', btnDesgloseMateria: 'Decompositio',
+        panelSeguridadTitle: 'Securitas', estadoActa: 'Status', estadoActaAbierta: 'Aperius', estadoActaCerrada: 'Clausus', btnBloquearActa: 'Claudere', btnTestSeguridad: 'Tentatio',
+        panelModificacionesTitle: 'Mutationes', modAlumnoId: 'ID', modNotaNueva: 'Nova Nota', modMotivo: 'Causa', modMotivoHint: 'Causa', btnAplicarMod: 'Applicare',
+        panelProfesoresTitle: 'Magistri', profFormTitle: 'Magister Creare', profName: 'Nomen', profEmail: 'Email', profUsername: 'Nomen Utens', profPassword: 'Clavis', btnCrearProfesor: 'Creare', registroFormTitle: 'Examinatio', registroAlumnoId: 'ID', registroMateria: 'Materia', registroFecha: 'Data', registroTipo: 'Genus', registroExam: 'Examinatio', registroAttendance: 'Praesentia', registroNota: 'Nota', registroNotaHint: '0-10', registroPresente: 'Status', registroPresent: 'Praesens', registroAbsent: 'Absens', btnRegistrarAcciones: 'Registrare',
+        btnLimpiarConsola: 'Mundare', certificadoBtn: 'Petere', idiomaLabel: 'Lingua', addScheduleBtn: 'Addere', verDetalles: 'Videre',
+        msgGradesSearchHint: 'Infer ID', msgNoNotes: 'Nulla testimonia', msgNoSchedule: 'Nulla hora', msgNoExamsAvailable: 'Nulla examinatio', msgNoAbsentees: 'Optimum', msgInvalidId: 'ID validus', msgEmptyFields: 'Complere campi', msgInvalidNote: 'Nota valida', msgSuccess: 'Optimum',
     },
     so: {
-        navAlumno: 'Aragga Baruun', navPerfil: 'Profayla Kii', navAjustes: 'Qabaneysiga', btnCerrar: 'Bax',
-        studentBadge: 'Kaalka Baruun', studentWelcome: 'Salaam,', studentPerformance: 'Natijadaada',
-        studentExams: 'Imtixaanada', studentAttendance: 'Hadka', cardHorario: 'Wakhtiga',
-        cardCertificados: 'Shahaadooyinka', cardConfiguracion: 'Qabaneysiga', cardCrearProfesor: 'Macallin',
-        cardRegistrar: 'Diiwaangelinta', certificadoBtn: 'Codsad', idiomaLabel: 'Af Soomaali',
-        settingsTitle: 'Qabaneysiga', settingsLanguageLabel: 'Af',
-        settingsThemeLabel: 'Madow', settingsNotificationsLabel: 'Ogeysiisyo',
-        settingsSaveBtn: 'Kaydi', addScheduleBtn: 'Dari', verDetalles: 'Arag',
-        buscarBtn: 'Raadi', exportarBtn: 'CSV', imprimirBtn: 'Buufi',
+        'siu-title': 'SIU Quechua - Panel Kontrol Somaali', 'consoleTitle': 'Konsolaadka Irtida', 'consoleBadge': 'Log Aktibad',
+        navAlumno: 'Aragga', navPerfil: 'Profayla', navAjustes: 'Qabaneysiga', btnCerrar: 'Bax',
+        'opt-es': 'Español', 'opt-qu': 'Quechua', 'opt-gn': 'Guaraní', 'opt-arn': 'Mapuche', 'opt-ay': 'Aimara', 'opt-ar': 'Arameo', 'opt-so': 'Somalí', 'opt-la': 'Latín', 'opt-vl': 'Villero', 'opt-pp': 'PaiPai', 'opt-dog': 'Idioma Perro',
+        studentBadge: 'Kaalka', studentWelcome: 'Salaam,', studentRole: 'Rol', studentRoleValue: 'Baruun', studentHint: 'Dugaagaga, notas, waajibinada.',
+        studentPerformance: 'Natijadaada', perfHint: 'Promedio', studentExams: 'Imtixaanada', examEmpty: 'Imtixaan ma\'a jira', studentAttendance: 'Hadka', attenEmpty: 'Hadka wanaagsan', cardHorario: 'Wakhtiga', schedHint: 'Wakhtiga', schedEmpty: 'Cargando...', cardCertificados: 'Shahaadooyinka', certHint: 'Shahaadooyinka', certEmpty: 'Shahaado ma\'a jira', cardConfiguracion: 'Qabaneysiga', confHint: 'Qabaneysiga',
+        modulosTitle: 'Modulo', moduloMateria: '1. Dugaag', moduloNotas: '2. Notas', moduloPromedios: '3 iyo 4. Promedio', moduloSeguridad: '5 iyo 6. Ilma\'aad', moduloModificaciones: '7 iyo 8. Hagitaan', moduloProfesores: 'Macallin',
+        panelMateriaTitle: 'Dugaag', materiaNombre: 'Magac', materiaNombreHint: 'Magac', materiaEscala: 'Scala', btnCrearMateria: 'Samee',
+        panelNotasTitle: 'Notas', cargaAlumnoId: 'ID', cargaAlumnoHint: 'Ex: 101', cargaNotaValor: 'Nota', cargaNotaHint: '1 to 10', btnCargarNota: 'Diiwaangelinta',
+        panelPromediosTitle: 'Promedio', promedioAlumnoId: 'ID', btnCalcularPromedio: 'Xisaabi', btnDesgloseMateria: 'Arag',
+        panelSeguridadTitle: 'Ilma\'aad', estadoActa: 'Xaalad', estadoActaAbierta: 'Furan', estadoActaCerrada: 'Xidhan', btnBloquearActa: 'Xidhi', btnTestSeguridad: 'Tijaabi',
+        panelModificacionesTitle: 'Hagitaan', modAlumnoId: 'ID', modNotaNueva: 'Nota Cusub', modMotivo: 'Sababta', modMotivoHint: 'Sababta', btnAplicarMod: 'Dhaaf',
+        panelProfesoresTitle: 'Macallin', profFormTitle: 'Macallin Samee', profName: 'Magac', profEmail: 'Email', profUsername: 'Username', profPassword: 'Erayga', btnCrearProfesor: 'Samee', registroFormTitle: 'Imtixaan', registroAlumnoId: 'ID', registroMateria: 'Dugaag', registroFecha: 'Taarikh', registroTipo: 'Nooca', registroExam: 'Imtixaan', registroAttendance: 'Hadka', registroNota: 'Nota', registroNotaHint: '0-10', registroPresente: 'Xaalad', registroPresent: 'Joog', registroAbsent: 'Joog', btnRegistrarAcciones: 'Diiwaangelinta',
+        btnLimpiarConsola: 'Nadiifi', certificadoBtn: 'Codsad', idiomaLabel: 'Af Soomaali', addScheduleBtn: 'Dari', verDetalles: 'Arag',
+        msgGradesSearchHint: 'Galka ID', msgNoNotes: 'Shahaado ma\'a jira', msgNoSchedule: 'Wakhtiga ma\'a jira', msgNoExamsAvailable: 'Imtixaan ma\'a jira', msgNoAbsentees: 'Wanaagsan', msgInvalidId: 'ID saxda ah', msgEmptyFields: 'Buuxi meelaha', msgInvalidNote: 'Nota saxda ah', msgSuccess: 'Wanaagsan',
     },
     la: {
+        'siu-title': 'SIU Quechua - Tabula Kontrolis Latinae', 'consoleTitle': 'Consolae Exitus', 'consoleBadge': 'Logs Activa',
         navAlumno: 'Visus Discipuli', navPerfil: 'Meum Profilum', navAjustes: 'Optiones', btnCerrar: 'Exire',
-        studentBadge: 'Tabula Discipuli', studentWelcome: 'Salve,', studentPerformance: 'Mei Eventus',
-        studentExams: 'Examinationes', studentAttendance: 'Absentia', cardHorario: 'Horarium',
-        cardCertificados: 'Testimonia', cardConfiguracion: 'Optiones', cardCrearProfesor: 'Magister',
-        cardRegistrar: 'Examen Registrare', certificadoBtn: 'Petere', idiomaLabel: 'Lingua Latina',
-        settingsTitle: 'Systematis Config', settingsLanguageLabel: 'Lingua',
-        settingsThemeLabel: 'Modus Tenebrae', settingsNotificationsLabel: 'Notificationes',
-        settingsSaveBtn: 'Servare', addScheduleBtn: 'Addere', verDetalles: 'Videre',
-        buscarBtn: 'Quaerere', exportarBtn: 'CSV', imprimirBtn: 'Imprimere',
+        'opt-es': 'Español', 'opt-qu': 'Quechua', 'opt-gn': 'Guaraní', 'opt-arn': 'Mapuche', 'opt-ay': 'Aimara', 'opt-ar': 'Arameo', 'opt-so': 'Somalí', 'opt-la': 'Latín', 'opt-vl': 'Villero', 'opt-pp': 'PaiPai', 'opt-dog': 'Idioma Perro',
+        studentBadge: 'Tabula Scholae', studentWelcome: 'Salve,', studentRole: 'Rol', studentRoleValue: 'Alumnus', studentHint: 'Tuae disciplinae, notae, officia.',
+        studentPerformance: 'Mei Eventus', perfHint: 'Promedio', studentExams: 'Examinationes', examEmpty: 'Nulla examinatio', studentAttendance: 'Absentia', attenEmpty: 'Perfecta praesentia', cardHorario: 'Horarium', schedHint: 'Horarium revisum', schedEmpty: 'Cargando...', cardCertificados: 'Testimonia', certHint: 'Testimonia', certEmpty: 'Nulla testimonia', cardConfiguracion: 'Optiones', confHint: 'Optiones',
+        modulosTitle: 'Moduli', moduloMateria: '1. Creatio', moduloNotas: '2. Notae', moduloPromedios: '3 et 4. Promedio', moduloSeguridad: '5 et 6. Securitas', moduloModificaciones: '7 et 8. Mutationes', moduloProfesores: 'Magistri',
+        panelMateriaTitle: 'Creatio Disciplinae', materiaNombre: 'Nomen Disciplinae', materiaNombreHint: 'Nomen', materiaEscala: 'Scala Min/Max', btnCrearMateria: 'Configurare',
+        panelNotasTitle: 'Gestor Notarum', cargaAlumnoId: 'ID Alumni', cargaAlumnoHint: 'Ex: 101', cargaNotaValor: 'Nota Obtenta', cargaNotaHint: '1 ad 10', btnCargarNota: 'Registrare Notam',
+        panelPromediosTitle: 'Calculus Promediorum', promedioAlumnoId: 'ID Consulendi', btnCalcularPromedio: 'Calculare Conditionem', btnDesgloseMateria: 'Videre Decompositiones',
+        panelSeguridadTitle: 'Auditor Clausurae', estadoActa: 'Status Acti', estadoActaAbierta: 'Aperius', estadoActaCerrada: 'Clausus', btnBloquearActa: 'Simulare Clausuram', btnTestSeguridad: 'Tentatio Securitatis',
+        panelModificacionesTitle: 'Editio Extraordinaria', modAlumnoId: 'ID Alumni', modNotaNueva: 'Nova Nota', modMotivo: 'Iustificatio', modMotivoHint: 'Iustificatio Obligatoria', btnAplicarMod: 'Applicare Mutationem',
+        panelProfesoresTitle: 'Administratio Magistrorum', profFormTitle: 'Creare Computrum Magistri', profName: 'Nomen', profEmail: 'Email', profUsername: 'Nomen Utens', profPassword: 'Clavis', btnCrearProfesor: 'Creare Magistrum', registroFormTitle: 'Registrare Examinationes/Absentiam', registroAlumnoId: 'ID Alumni', registroMateria: 'Disciplina', registroFecha: 'Data', registroTipo: 'Genus', registroExam: 'Examinatio', registroAttendance: 'Absentia', registroNota: 'Nota', registroNotaHint: '0-10', registroPresente: 'Status', registroPresent: 'Praesens', registroAbsent: 'Absens', btnRegistrarAcciones: 'Registrare',
+        btnLimpiarConsola: 'Mundare Consolam', certificadoBtn: 'Petere', idiomaLabel: 'Lingua Latina', addScheduleBtn: 'Addere', verDetalles: 'Videre',
+        msgGradesSearchHint: 'Infer ID', msgNoNotes: 'Nulla testimonia recentia', msgNoSchedule: 'Horarium non disponibile', msgNoExamsAvailable: 'Nulla examinatio', msgNoAbsentees: 'Perfecta praesentia', msgInvalidId: 'ID invalidus', msgEmptyFields: 'Complere omnia campi', msgInvalidNote: 'Nota invalida', msgSuccess: 'Operatio Prospera',
     },
     vl: {
-        navAlumno: 'Vista Botellero', navPerfil: 'Mi Perfil Villero', navAjustes: 'Configuraciones', btnCerrar: 'Chetarse',
-        studentBadge: 'Panel Botellero', studentWelcome: 'Che,', studentPerformance: 'Mi Rendimiento',
-        studentExams: 'Exámenes che', studentAttendance: 'Asistencia boleta', cardHorario: 'Horario del Chetaje',
-        cardCertificados: 'Certificadillos', cardConfiguracion: 'Configuraciones boleta', cardCrearProfesor: 'Profe che',
-        cardRegistrar: 'Registrar che', certificadoBtn: 'Mandale', idiomaLabel: 'Idioma Villero',
-        settingsTitle: 'Ajustes che', settingsLanguageLabel: 'Idioma boleta',
-        settingsThemeLabel: 'Modo oscuro che', settingsNotificationsLabel: 'Notificaciones boleta',
-        settingsSaveBtn: 'Guardalo', addScheduleBtn: 'Agregá', verDetalles: 'Mirá',
-        buscarBtn: 'Buscá', exportarBtn: 'CSV boleta', imprimirBtn: 'Imprimí',
+        'siu-title': 'SIU Quechua - Panel Control Villero', 'consoleTitle': 'Konsolaña Salida che', 'consoleBadge': 'Logs Activa che',
+        navAlumno: 'Vista Boleta', navPerfil: 'Mi Perfil Boleta', navAjustes: 'Config Boleta', btnCerrar: 'Chetarse',
+        'opt-es': 'Español', 'opt-qu': 'Quechua', 'opt-gn': 'Guaraní', 'opt-arn': 'Mapuche', 'opt-ay': 'Aimara', 'opt-ar': 'Arameo', 'opt-so': 'Somalí', 'opt-la': 'Latín', 'opt-vl': 'Villero', 'opt-pp': 'PaiPai', 'opt-dog': 'Idioma Perro',
+        studentBadge: 'Panel Boleta', studentWelcome: 'Che,', studentRole: 'Rol', studentRoleValue: 'Estudiante che', studentHint: 'Tus cosas, notas che, responsabilidades boleta.',
+        studentPerformance: 'Mi Rendi Boleta', perfHint: 'Promedio che', studentExams: 'Exámenes che', examEmpty: 'Sin exámenes che', studentAttendance: 'Asistencia boleta', attenEmpty: 'Sin faltas che', cardHorario: 'Horario che', schedHint: 'Tus clases che', schedEmpty: 'Cargando che...', cardCertificados: 'Certificadillos', certHint: 'Descarga constancia', certEmpty: 'Sin certificadillos', cardConfiguracion: 'Config Che', confHint: 'Preferencias boleta',
+        modulosTitle: 'Módulos che', moduloMateria: '1. Creación che', moduloNotas: '2. Notas Boleta', moduloPromedios: '3 y 4. Promedio che', moduloSeguridad: '5 y 6. Seguridad boleta', moduloModificaciones: '7 y 8. Cambios che', moduloProfesores: 'Gestión Profe',
+        panelMateriaTitle: 'Motor de Materias che', materiaNombre: 'Nombre che', materiaNombreHint: 'Tu materia che', materiaEscala: 'Escala che', btnCrearMateria: 'Crear che',
+        panelNotasTitle: 'Gestor de Notas Boleta', cargaAlumnoId: 'ID Alumno', cargaAlumnoHint: 'Ej: 101', cargaNotaValor: 'Nota che', cargaNotaHint: '1 al 10', btnCargarNota: 'Registrar che',
+        panelPromediosTitle: 'Cálculo de Promedio che', promedioAlumnoId: 'ID Consulta che', btnCalcularPromedio: 'Calcular che', btnDesgloseMateria: 'Ver Desglose che',
+        panelSeguridadTitle: 'Seguridad che', estadoActa: 'Estado del Acta', estadoActaAbierta: 'Abierta che', estadoActaCerrada: 'Cerrada boleta', btnBloquearActa: 'Bloquear che', btnTestSeguridad: 'Test de Seguridad',
+        panelModificacionesTitle: 'Cambios che', modAlumnoId: 'ID Alumno', modNotaNueva: 'Nota Nueva che', modMotivo: 'Justificación che', modMotivoHint: 'Dale motivo che', btnAplicarMod: 'Aplicar cambio',
+        panelProfesoresTitle: 'Gestión Profes', profFormTitle: 'Crear cuenta de Profe', profName: 'Nombre', profEmail: 'Email', profUsername: 'Usuario che', profPassword: 'Contraseña', btnCrearProfesor: 'Crear Profe', registroFormTitle: 'Registrar Exámenes', registroAlumnoId: 'ID Alumno', registroMateria: 'Materia che', registroFecha: 'Fecha che', registroTipo: 'Tipo che', registroExam: 'Examen che', registroAttendance: 'Asistencia boleta', registroNota: 'Nota che', registroNotaHint: '0-10', registroPresente: 'Estado', registroPresent: 'Presente che', registroAbsent: 'Ausente boleta', btnRegistrarAcciones: 'Registrar che',
+        btnLimpiarConsola: 'Limpiar Consola', certificadoBtn: 'Mandale Solicitud', idiomaLabel: 'Idioma Villero', addScheduleBtn: 'Agregá Clase', verDetalles: 'Mirá Detalles',
+        msgGradesSearchHint: 'Ingresá tu ID che', msgNoNotes: 'Sin certificados che', msgNoSchedule: 'Sin horarios boleta', msgNoExamsAvailable: 'Sin exámenes che', msgNoAbsentees: 'Allin che', msgInvalidId: 'ID incorrecto', msgEmptyFields: 'Completa todo che', msgInvalidNote: 'Nota incorrecta che', msgSuccess: 'Guardado che',
     },
     pp: {
-        navAlumno: 'Visión Alumno', navPerfil: 'Mi Espíritu', navAjustes: 'Sabiduría', btnCerrar: 'Partir',
-        studentBadge: 'Casa del Aprendizaje', studentWelcome: 'Hermano,', studentPerformance: 'Mi Camino',
-        studentExams: 'Pruebas de Espíritu', studentAttendance: 'Presencia', cardHorario: 'Tiempo Sagrado',
-        cardCertificados: 'Reconocimiento', cardConfiguracion: 'Sabiduría', cardCrearProfesor: 'Sabio',
-        cardRegistrar: 'Registrar Aprendizaje', certificadoBtn: 'Solicitar Bendición', idiomaLabel: 'Lengua PaiPai',
-        settingsTitle: 'Configuración Sagrada', settingsLanguageLabel: 'Lengua Espiritual',
-        settingsThemeLabel: 'Modo Nocturno', settingsNotificationsLabel: 'Avisos Espirituales',
-        settingsSaveBtn: 'Guardar Sabiduría', addScheduleBtn: 'Añadir Tiempo', verDetalles: 'Ver Misterios',
-        buscarBtn: 'Buscar Verdad', exportarBtn: 'CSV Espiritual', imprimirBtn: 'Imprimir Alma',
+        'siu-title': 'SIU Quechua - Panel Sagrado de Control', 'consoleTitle': 'Salida Espiritual de Consola', 'consoleBadge': 'Logs Sagrados',
+        navAlumno: 'Visión de Aprendizaje', navPerfil: 'Mi Espíritu', navAjustes: 'Sabiduría', btnCerrar: 'Partir en Paz',
+        'opt-es': 'Español', 'opt-qu': 'Quechua', 'opt-gn': 'Guaraní', 'opt-arn': 'Mapuche', 'opt-ay': 'Aimara', 'opt-ar': 'Arameo', 'opt-so': 'Somalí', 'opt-la': 'Latín', 'opt-vl': 'Villero', 'opt-pp': 'PaiPai', 'opt-dog': 'Idioma Perro',
+        studentBadge: 'Casa del Conocimiento', studentWelcome: 'Hermano,', studentRole: 'Rol', studentRoleValue: 'Aprendiz', studentHint: 'Tu aprendizaje, calificaciones, responsabilidades sagradas.',
+        studentPerformance: 'Mi Camino', perfHint: 'Promedio Espiritual', studentExams: 'Pruebas de Entendimiento', examEmpty: 'Sin pruebas espirituales', studentAttendance: 'Presencia en Círculo', attenEmpty: 'Presencia perfecta', cardHorario: 'Tiempo Sagrado', schedHint: 'Tus momentos de aprendizaje', schedEmpty: 'Cargando temporalidad...', cardCertificados: 'Reconocimiento', certHint: 'Tus logros certificados', certEmpty: 'Sin reconocimientos', cardConfiguracion: 'Configuración Sabia', confHint: 'Ajustes personales',
+        modulosTitle: 'Módulos Sagrados', moduloMateria: '1. Creación de Sabiduría', moduloNotas: '2. Registro de Aprendizaje', moduloPromedios: '3 y 4. Medición Espiritual', moduloSeguridad: '5 y 6. Protección', moduloModificaciones: '7 y 8. Transformación', moduloProfesores: 'Guías Sabios',
+        panelMateriaTitle: 'Motor de Sabiduría', materiaNombre: 'Nombre del Aprendizaje', materiaNombreHint: 'Tu disciplina', materiaEscala: 'Escala Espiritual', btnCrearMateria: 'Crear Enseñanza',
+        panelNotasTitle: 'Gestor de Aprendizaje', cargaAlumnoId: 'ID del Aprendiz', cargaAlumnoHint: 'Ej: 101', cargaNotaValor: 'Calificación', cargaNotaHint: '1 al 10', btnCargarNota: 'Registrar Aprendizaje',
+        panelPromediosTitle: 'Evaluación Espiritual', promedioAlumnoId: 'ID a Evaluar', btnCalcularPromedio: 'Calcular Progreso', btnDesgloseMateria: 'Ver Detalles del Camino',
+        panelSeguridadTitle: 'Protección del Conocimiento', estadoActa: 'Estado de Protección', estadoActaAbierta: 'Abierto al Aprendizaje', estadoActaCerrada: 'Protegido Eternamente', btnBloquearActa: 'Sellar Sabiduría', btnTestSeguridad: 'Prueba de Integridad',
+        panelModificacionesTitle: 'Transformación Sagrada', modAlumnoId: 'ID del Aprendiz', modNotaNueva: 'Nueva Calificación', modMotivo: 'Razón Espiritual', modMotivoHint: 'Explica tu transformación', btnAplicarMod: 'Aplicar Cambio Sagrado',
+        panelProfesoresTitle: 'Administración de Sabios', profFormTitle: 'Nombrar Nuevo Sabio', profName: 'Nombre', profEmail: 'Contacto', profUsername: 'Usuario Sabio', profPassword: 'Contraseña Sagrada', btnCrearProfesor: 'Nombrar Sabio', registroFormTitle: 'Registrar Experiencias', registroAlumnoId: 'ID Aprendiz', registroMateria: 'Disciplina', registroFecha: 'Fecha', registroTipo: 'Tipo', registroExam: 'Prueba Espiritual', registroAttendance: 'Presencia', registroNota: 'Calificación', registroNotaHint: '0-10', registroPresente: 'Estado', registroPresent: 'Presente', registroAbsent: 'Ausente', btnRegistrarAcciones: 'Registrar',
+        btnLimpiarConsola: 'Limpiar Visión', certificadoBtn: 'Solicitar Bendición', idiomaLabel: 'Lengua del Espíritu', addScheduleBtn: 'Añadir Tiempo Sagrado', verDetalles: 'Ver Misterios',
+        msgGradesSearchHint: 'Busca tu ID', msgNoNotes: 'Sin reconocimientos', msgNoSchedule: 'Sin tiempos', msgNoExamsAvailable: 'Sin pruebas', msgNoAbsentees: 'Presencia perfecta', msgInvalidId: 'ID inválido', msgEmptyFields: 'Completa los campos', msgInvalidNote: 'Calificación inválida', msgSuccess: 'Éxito Espiritual',
     },
     dog: {
-        navAlumno: 'Guau Guau Woof', navPerfil: 'Mi Huella', navAjustes: 'Olfato Ajustes', btnCerrar: '¡A Dormir!',
-        studentBadge: 'Panel Canino', studentWelcome: 'Wuf Wuf,', studentPerformance: 'Mi Hora de Paseo',
-        studentExams: 'Huesitos de Prueba', studentAttendance: 'Asistencia de Paseo', cardHorario: 'Hora de Paseo',
-        cardCertificados: 'Huesos Certificados', cardConfiguracion: 'Olfato del Perro', cardCrearProfesor: 'Entrenador Guau',
-        cardRegistrar: 'Registrar Ladridos', certificadoBtn: 'Ladra Fuerte', idiomaLabel: 'Idioma Perro',
-        settingsTitle: 'Ajustes Perrunos', settingsLanguageLabel: 'Idioma Canino',
-        settingsThemeLabel: 'Modo Luna Negra', settingsNotificationsLabel: 'Sonidos de Alerta',
-        settingsSaveBtn: 'Guardar Hueso', addScheduleBtn: 'Agregar Paseo', verDetalles: 'Olfatear',
-        buscarBtn: 'Olfatear', exportarBtn: 'CSV Ladrido', imprimirBtn: 'Marcar Territorio',
+        'siu-title': 'SIU Quechua - Panel Control Guau', 'consoleTitle': 'Konsolaña Salida Guau', 'consoleBadge': 'Logs Guau',
+        navAlumno: 'Woof Woof Guau', navPerfil: 'Mi Huella Canina', navAjustes: 'Olfato Ajustes', btnCerrar: '¡A Dormir Guau!',
+        'opt-es': 'Español', 'opt-qu': 'Quechua', 'opt-gn': 'Guaraní', 'opt-arn': 'Mapuche', 'opt-ay': 'Aimara', 'opt-ar': 'Arameo', 'opt-so': 'Somalí', 'opt-la': 'Latín', 'opt-vl': 'Villero', 'opt-pp': 'PaiPai', 'opt-dog': 'Idioma Perro',
+        studentBadge: 'Panel Canino', studentWelcome: 'Wuf Wuf,', studentRole: 'Rol Perro', studentRoleValue: 'Cachorro', studentHint: 'Tu carrera, notas perrunas, responsabilidades caninas.',
+        studentPerformance: 'Mi Hora de Paseo', perfHint: 'Promedio Guau', studentExams: 'Huesitos de Prueba', examEmpty: 'Sin huesitos', studentAttendance: 'Asistencia de Paseo', attenEmpty: 'Perfecto olfato', cardHorario: 'Hora de Paseo Guau', schedHint: 'Tus paseos diarios', schedEmpty: 'Preparando correa...', cardCertificados: 'Huesos Certificados', certHint: 'Tus premios caninos', certEmpty: 'Sin huesitos ganados', cardConfiguracion: 'Olfato del Perro', confHint: 'Preferencias perrunas',
+        modulosTitle: 'Módulos Guau', moduloMateria: '1. Creación Canina', moduloNotas: '2. Registro de Ladridos', moduloPromedios: '3 y 4. Calculo Perro', moduloSeguridad: '5 y 6. Guarda Perro', moduloModificaciones: '7 y 8. Cambios Guau', moduloProfesores: 'Entrenadores Guau',
+        panelMateriaTitle: 'Motor de Perros', materiaNombre: 'Nombre Perro', materiaNombreHint: 'Tu disciplina guau', materiaEscala: 'Escala Canina', btnCrearMateria: 'Crear Guau',
+        panelNotasTitle: 'Gestor de Ladridos', cargaAlumnoId: 'ID Perro', cargaAlumnoHint: 'Ej: 101', cargaNotaValor: 'Nota Guau', cargaNotaHint: '1 al 10 guau', btnCargarNota: 'Registrar Ladrido',
+        panelPromediosTitle: 'Cálculo Perro', promedioAlumnoId: 'ID Olfatear', btnCalcularPromedio: 'Calcular Guau', btnDesgloseMateria: 'Ver Desglose Perro',
+        panelSeguridadTitle: 'Guarda Seguridad', estadoActa: 'Estado Guau', estadoActaAbierta: 'Abierto Guau', estadoActaCerrada: 'Cerrado Guau', btnBloquearActa: 'Bloquear Guau', btnTestSeguridad: 'Test Perro',
+        panelModificacionesTitle: 'Cambios Guau', modAlumnoId: 'ID Perro', modNotaNueva: 'Nota Nueva Guau', modMotivo: 'Razon Ladrido', modMotivoHint: 'Explica el guau', btnAplicarMod: 'Aplicar Guau',
+        panelProfesoresTitle: 'Entrenadores Caninos', profFormTitle: 'Crear Entrenador Guau', profName: 'Nombre Guau', profEmail: 'Email Perro', profUsername: 'Usuario Guau', profPassword: 'Contraseña Guau', btnCrearProfesor: 'Crear Entrenador', registroFormTitle: 'Registrar Guau', registroAlumnoId: 'ID Perro', registroMateria: 'Disciplina Guau', registroFecha: 'Fecha Guau', registroTipo: 'Tipo Guau', registroExam: 'Prueba Guau', registroAttendance: 'Paseo', registroNota: 'Nota Guau', registroNotaHint: '0-10 Guau', registroPresente: 'Estado Guau', registroPresent: 'Presente Guau', registroAbsent: 'Ausente Guau', btnRegistrarAcciones: 'Registrar Guau',
+        btnLimpiarConsola: 'Limpiar Guau', certificadoBtn: 'Ladra Fuerte', idiomaLabel: 'Idioma Perro', addScheduleBtn: 'Agregar Paseo', verDetalles: 'Olfatear',
+        msgGradesSearchHint: 'Ingresa tu ID Guau', msgNoNotes: 'Sin certificados Guau', msgNoSchedule: 'Sin horarios Guau', msgNoExamsAvailable: 'Sin pruebas Guau', msgNoAbsentees: 'Perfecto guau', msgInvalidId: 'ID incorrecto', msgEmptyFields: 'Completa todo Guau', msgInvalidNote: 'Nota incorrecta Guau', msgSuccess: 'Éxito Guau',
     }
 };
+
 function aplicarIdioma(codigo) {
     const t = translations[codigo] || translations.es;
-    const elementos = {
-        'btn-open-alumno': `<i class="fa-solid fa-user-graduate me-1"></i> ${t.navAlumno}`,
-        'btn-open-profile': `<i class="fa-solid fa-user me-1"></i> ${t.navPerfil}`,
-        'btn-open-settings': `<i class="fa-solid fa-gear me-1"></i> ${t.navAjustes}`,
-        'btn-logout': `<i class="fa-solid fa-right-from-bracket me-1"></i>${t.btnCerrar}`,
-        'student-panel-badge': t.studentBadge,
-        'student-welcome': t.studentWelcome,
-        'student-performance-title': t.studentPerformance,
-        'student-exams-title': t.studentExams,
-        'student-attendance-title': t.studentAttendance,
-        'student-horario-title': t.cardHorario,
-        'student-certificados-title': t.cardCertificados,
-        'student-config-title': t.cardConfiguracion,
-        'language-switcher-label': t.idiomaLabel,
-        'settingsModalLabel': t.settingsTitle,
-        'settings-language-label': t.settingsLanguageLabel,
-        'settings-theme-label': t.settingsThemeLabel,
-        'settings-notifications-label': t.settingsNotificationsLabel,
-        'settings-save': t.settingsSaveBtn,
-        'student-add-schedule': t.addScheduleBtn,
-        'student-open-offcanvas': t.verDetalles,
-        'alumno-buscar-btn': t.buscarBtn,
-        'alumno-export-btn': t.exportarBtn,
-        'alumno-print-btn': t.imprimirBtn,
-        'btn-crear-profesor': t.cardCrearProfesor,
-        'btn-registrar-acciones': t.cardRegistrar,
-        'student-request-certificate': t.certificadoBtn,
-    };
     
-    Object.keys(elementos).forEach(id => {
-        const el = getEl(id);
-        if (!el) return;
-        if (id.includes('btn-')) {
-            el.innerHTML = elementos[id];
-        } else {
-            el.innerText = elementos[id];
+    // Traducir TODOS los elementos con data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) {
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                el.placeholder = t[key];
+            } else if (el.tagName === 'BUTTON') {
+                el.textContent = t[key];
+            } else {
+                el.textContent = t[key];
+            }
+        }
+    });
+    
+    // Traducir placeholders con data-i18n-placeholder
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (t[key]) {
+            el.placeholder = t[key];
+        }
+    });
+    
+    // Traducir options de select
+    document.querySelectorAll('option[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) {
+            el.textContent = t[key];
         }
     });
 }
-
 
 const languageSelector = getEl('language-switcher');
 const settingsLanguageSelector = getEl('settings-language');

@@ -16,16 +16,16 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom shadow-sm mb-4">
         <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
-            <a class="navbar-brand fw-bold" href="#"><img src="imgs/Tawa_chakana.png" class="tawa"> SIU Quechua - Panel de Control Total</a>
+            <a class="navbar-brand fw-bold" href="#"><img src="imgs/Tawa_chakana.png" class="tawa"> <span data-i18n="siu-title">SIU Quechua - Panel de Control Total</span></a>
             <div class="d-flex align-items-center">
                 <button id="btn-open-alumno" class="btn btn-outline-light btn-sm me-2" disabled type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAlumno" aria-controls="offcanvasAlumno">
-                    <i class="fa-solid fa-user-graduate me-1"></i> Vista Alumno
+                    <i class="fa-solid fa-user-graduate me-1"></i> <span data-i18n="navAlumno">Vista Alumno</span>
                 </button>
                 <button id="btn-open-profile" class="btn btn-outline-light btn-sm me-2" data-bs-toggle="modal" data-bs-target="#profileModal" disabled>
-                    <i class="fa-solid fa-user me-1"></i> Mi Perfil
+                    <i class="fa-solid fa-user me-1"></i> <span data-i18n="navPerfil">Mi Perfil</span>
                 </button>
-                <button id="btn-open-settings" class="btn btn-outline-light btn-sm me-2" data-bs-toggle="modal" data-bs-target="#settingsModal" type="button"><i class="fa-solid fa-gear me-1"></i> Ajustes</button>
-                <button id="btn-logout" class="btn btn-outline-light btn-sm me-2" type="button"><i class="fa-solid fa-right-from-bracket me-1"></i>Cerrar sesión</button>
+                <button id="btn-open-settings" class="btn btn-outline-light btn-sm me-2" data-bs-toggle="modal" data-bs-target="#settingsModal" type="button"><i class="fa-solid fa-gear me-1"></i> <span data-i18n="navAjustes">Ajustes</span></button>
+                <button id="btn-logout" class="btn btn-outline-light btn-sm me-2" type="button"><i class="fa-solid fa-right-from-bracket me-1"></i><span data-i18n="btnCerrar">Cerrar sesión</span></button>
                 <span id="nav-usuario" class="text-light ms-2 small"></span>
             </div>
         </div>
@@ -38,15 +38,15 @@
                     <div class="card shadow-sm border-0 p-4 student-hero-card">
                         <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-4">
                             <div>
-                                <span id="student-panel-badge" class="badge bg-secondary mb-2">Panel Estudiante</span>
-                                <h3 class="fw-bold mb-1"><span id="student-welcome">Bienvenido,</span> <span id="student-name">Estudiante</span></h3>
-                                <p class="text-muted mb-0" id="student-course">Tus materias, notas y responsabilidades académicas aquí.</p>
+                                <span id="student-panel-badge" class="badge bg-secondary mb-2" data-i18n="studentBadge">Panel Estudiante</span>
+                                <h3 class="fw-bold mb-1"><span data-i18n="studentWelcome">Bienvenido,</span> <span id="student-name">Estudiante</span></h3>
+                                <p class="text-muted mb-0" id="student-course" data-i18n="studentHint">Tus materias, notas y responsabilidades académicas aquí.</p>
                             </div>
                             <div class="d-flex align-items-center gap-3">
                                 <img id="student-avatar" class="student-avatar" src="imgs/avatar-placeholder.png" alt="Foto alumno">
                                 <div class="text-end">
-                                    <div class="small text-muted">Rol</div>
-                                    <div id="student-role" class="fw-bold">Alumno</div>
+                                    <div class="small text-muted" data-i18n="studentRole">Rol</div>
+                                    <div id="student-role" class="fw-bold" data-i18n="studentRoleValue">Alumno</div>
                                 </div>
                             </div>
                         </div>
@@ -55,65 +55,65 @@
                 <div class="col-lg-4">
                     <div class="card student-card shadow-sm border-0 p-3">
                         <div class="d-flex align-items-center justify-content-between mb-3">
-                            <div><h6 class="mb-1">Mi rendimiento</h6><small class="text-muted">Promedio general</small></div>
+                            <div><h6 class="mb-1" data-i18n="studentPerformance">Mi rendimiento</h6><small class="text-muted" data-i18n="perfHint">Promedio general</small></div>
                             <div class="display-6 fw-bold text-primary" id="student-average">-</div>
                         </div>
-                        <div id="student-grades-summary" class="small text-muted">Busca tu ID para ver tus calificaciones.</div>
+                        <div id="student-grades-summary" class="small text-muted" data-i18n="msgGradesSearchHint">Busca tu ID para ver tus calificaciones.</div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="card student-card shadow-sm border-0 p-3">
-                        <h6 id="student-exams-title" class="mb-3">Próximos exámenes</h6>
-                        <div id="student-exams-summary" class="small text-muted">Sin exámenes disponibles.</div>
+                        <h6 id="student-exams-title" class="mb-3" data-i18n="studentExams">Próximos exámenes</h6>
+                        <div id="student-exams-summary" class="small text-muted" data-i18n="examEmpty">Sin exámenes disponibles.</div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="card student-card shadow-sm border-0 p-3">
-                        <h6 id="student-attendance-title" class="mb-3">Asistencias</h6>
-                        <div id="student-attendance-summary" class="small text-muted">Sin inasistencias registradas.</div>
+                        <h6 id="student-attendance-title" class="mb-3" data-i18n="studentAttendance">Asistencias</h6>
+                        <div id="student-attendance-summary" class="small text-muted" data-i18n="attenEmpty">Sin inasistencias registradas.</div>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="card student-card shadow-sm border-0 p-3">
                         <div class="d-flex align-items-center justify-content-between mb-3">
-                            <div><h6 id="student-horario-title" class="mb-1">Horario semanal</h6><small class="text-muted">Repasa tus clases</small></div>
-                            <button id="student-open-offcanvas" class="btn btn-sm btn-outline-primary">Ver detalles</button>
+                            <div><h6 id="student-horario-title" class="mb-1" data-i18n="cardHorario">Horario semanal</h6><small class="text-muted" data-i18n="schedHint">Repasa tus clases</small></div>
+                            <button id="student-open-offcanvas" class="btn btn-sm btn-outline-primary" data-i18n="verDetalles">Ver detalles</button>
                         </div>
-                        <div id="student-schedule-summary" class="small text-muted">Cargando horarios...</div>
+                        <div id="student-schedule-summary" class="small text-muted" data-i18n="schedEmpty">Cargando horarios...</div>
                         <div class="mt-3">
-                            <button id="student-add-schedule" class="btn btn-sm btn-outline-secondary">Agregar clase</button>
+                            <button id="student-add-schedule" class="btn btn-sm btn-outline-secondary" data-i18n="addScheduleBtn">Agregar clase</button>
                         </div>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="card student-card shadow-sm border-0 p-3">
                         <div class="d-flex align-items-center justify-content-between mb-3">
-                            <div><h6 id="student-certificados-title" class="mb-1">Certificados</h6><small class="text-muted">Descarga tus constancias</small></div>
-                            <button id="student-request-certificate" class="btn btn-sm btn-outline-success">Solicitar</button>
+                            <div><h6 id="student-certificados-title" class="mb-1" data-i18n="cardCertificados">Certificados</h6><small class="text-muted" data-i18n="certHint">Descarga tus constancias</small></div>
+                            <button id="student-request-certificate" class="btn btn-sm btn-outline-success" data-i18n="certificadoBtn">Solicitar</button>
                         </div>
-                        <div id="student-certificates-summary" class="small text-muted">No tienes certificados recientes.</div>
+                        <div id="student-certificates-summary" class="small text-muted" data-i18n="certEmpty">No tienes certificados recientes.</div>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="card student-card shadow-sm border-0 p-3">
                         <div class="d-flex align-items-center justify-content-between mb-3">
-                            <div><h6 id="student-config-title" class="mb-1">Configuraciones</h6><small class="text-muted">Preferencias personales</small></div>
+                            <div><h6 id="student-config-title" class="mb-1" data-i18n="cardConfiguracion">Configuraciones</h6><small class="text-muted" data-i18n="confHint">Preferencias personales</small></div>
                         </div>
                         <div class="row g-2 align-items-center">
                             <div class="col-12 col-md-6">
-                                <label id="language-switcher-label" class="form-label small">Cambiar idioma</label>
+                                <label id="language-switcher-label" class="form-label small" data-i18n="idiomaLabel">Cambiar idioma</label>
                                 <select id="language-switcher" class="form-select form-select-sm">
-                                    <option value="es">Español</option>
-                                    <option value="qu">Quechua</option>
-                                    <option value="gn">Guaraní</option>
-                                    <option value="arn">Mapuche</option>
-                                    <option value="ay">Aimara</option>
-                                    <option value="ar">Arameo</option>
-                                    <option value="so">Somalí</option>
-                                    <option value="la">Latín</option>
-                                    <option value="vl">Villero</option>
-                                    <option value="pp">PaiPai</option>
-                                    <option value="dog">Idioma Perro</option>
+                                    <option value="es" data-i18n="opt-es">Español</option>
+                                    <option value="qu" data-i18n="opt-qu">Quechua</option>
+                                    <option value="gn" data-i18n="opt-gn">Guaraní</option>
+                                    <option value="arn" data-i18n="opt-arn">Mapuche</option>
+                                    <option value="ay" data-i18n="opt-ay">Aimara</option>
+                                    <option value="ar" data-i18n="opt-ar">Arameo</option>
+                                    <option value="so" data-i18n="opt-so">Somalí</option>
+                                    <option value="la" data-i18n="opt-la">Latín</option>
+                                    <option value="vl" data-i18n="opt-vl">Villero</option>
+                                    <option value="pp" data-i18n="opt-pp">PaiPai</option>
+                                    <option value="dog" data-i18n="opt-dog">Idioma Perro</option>
                                 </select>
                             </div>
                         </div>
@@ -125,14 +125,14 @@
             <!-- MENÚ DE SECCIONES (IZQUIERDA) -->
             <div class="col-md-3">
                 <div class="card shadow-sm border-0 p-3">
-                    <h6 class="text-muted text-uppercase fw-bold mb-3 small">Módulos del Sistema</h6>
+                    <h6 class="text-muted text-uppercase fw-bold mb-3 small" data-i18n="modulosTitle">Módulos del Sistema</h6>
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <button class="nav-link active text-start mb-2" id="tab-materia" data-bs-toggle="pill" data-bs-target="#panel-materia" type="button"><i class="fa-solid fa-folder-plus me-2"></i> 1. Creación de Materias</button>
-                        <button class="nav-link text-start mb-2" id="tab-notas" data-bs-toggle="pill" data-bs-target="#panel-notas" type="button"><i class="fa-solid fa-file-signature me-2"></i> 2. Carga de Notas Base</button>
-                        <button class="nav-link text-start mb-2" id="tab-promedios" data-bs-toggle="pill" data-bs-target="#panel-promedios" type="button"><i class="fa-solid fa-calculator me-2"></i> 3 y 4. Motor de Promedios</button>
-                        <button class="nav-link text-start mb-2" id="tab-seguridad" data-bs-toggle="pill" data-bs-target="#panel-seguridad" type="button"><i class="fa-solid fa-shield-halved me-2"></i> 5 y 6. Cierre y Seguridad</button>
-                        <button class="nav-link text-start mb-2" id="tab-modificaciones" data-bs-toggle="pill" data-bs-target="#panel-modificaciones" type="button"><i class="fa-solid fa-user-pen me-2"></i> 7 y 8. Modificaciones</button>
-                        <button class="nav-link text-start mb-2 prof-only d-none" id="tab-profesores" data-bs-toggle="pill" data-bs-target="#panel-profesores" type="button"><i class="fa-solid fa-chalkboard-user me-2"></i> Gestión Profesor</button>
+                        <button class="nav-link active text-start mb-2" id="tab-materia" data-bs-toggle="pill" data-bs-target="#panel-materia" type="button"><i class="fa-solid fa-folder-plus me-2"></i> <span data-i18n="moduloMateria">1. Creación de Materias</span></button>
+                        <button class="nav-link text-start mb-2" id="tab-notas" data-bs-toggle="pill" data-bs-target="#panel-notas" type="button"><i class="fa-solid fa-file-signature me-2"></i> <span data-i18n="moduloNotas">2. Carga de Notas Base</span></button>
+                        <button class="nav-link text-start mb-2" id="tab-promedios" data-bs-toggle="pill" data-bs-target="#panel-promedios" type="button"><i class="fa-solid fa-calculator me-2"></i> <span data-i18n="moduloPromedios">3 y 4. Motor de Promedios</span></button>
+                        <button class="nav-link text-start mb-2" id="tab-seguridad" data-bs-toggle="pill" data-bs-target="#panel-seguridad" type="button"><i class="fa-solid fa-shield-halved me-2"></i> <span data-i18n="moduloSeguridad">5 y 6. Cierre y Seguridad</span></button>
+                        <button class="nav-link text-start mb-2" id="tab-modificaciones" data-bs-toggle="pill" data-bs-target="#panel-modificaciones" type="button"><i class="fa-solid fa-user-pen me-2"></i> <span data-i18n="moduloModificaciones">7 y 8. Modificaciones</span></button>
+                        <button class="nav-link text-start mb-2 prof-only d-none" id="tab-profesores" data-bs-toggle="pill" data-bs-target="#panel-profesores" type="button"><i class="fa-solid fa-chalkboard-user me-2"></i> <span data-i18n="moduloProfesores">Gestión Profesor</span></button>
                     </div>
                 </div>
             </div>
@@ -144,130 +144,130 @@
                         
                         <!-- PANEL 1: CREACIÓN DE MATERIAS -->
                         <div class="tab-pane fade show rel active" id="panel-materia" role="tabpanel">
-                            <h5 class="fw-bold mb-3 text-primary">Motor de Creación y Configuración</h5>
+                            <h5 class="fw-bold mb-3 text-primary" data-i18n="panelMateriaTitle">Motor de Creación y Configuración</h5>
                             <form id="form-crear-materia" onsubmit="event.preventDefault();">
                                 <div class="mb-3">
-                                    <label class="form-label fw-semibold">Nombre de la Materia</label>
-                                    <input type="text" class="form-control" id="materia-nombre" value="Introducción al Análisis Sistémico">
+                                    <label class="form-label fw-semibold" data-i18n="materiaNombre">Nombre de la Materia</label>
+                                    <input type="text" class="form-control" id="materia-nombre" data-i18n-placeholder="materiaNombreHint" placeholder="Introducción al Análisis Sistémico">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label fw-semibold">Escala Mínima / Máxima</label>
+                                    <label class="form-label fw-semibold" data-i18n="materiaEscala">Escala Mínima / Máxima</label>
                                     <div class="row">
                                         <div class="col"><input type="number" class="form-control" id="materia-min" value="1"></div>
                                         <div class="col"><input type="number" class="form-control" id="materia-max" value="10"></div>
                                     </div>
                                 </div>
-                                <button type="button" id="btn-crear-materia" class="btn btn-gradient w-100 fw-bold">Configurar e Instanciar Materia</button>
+                                <button type="button" id="btn-crear-materia" class="btn btn-gradient w-100 fw-bold" data-i18n="btnCrearMateria">Configurar e Instanciar Materia</button>
                             </form>
                         </div>
 
                         <!-- PANEL 2: CARGA DE NOTAS BASE -->
                         <div class="tab-pane fade" id="panel-notas" role="tabpanel">
-                            <h5 class="fw-bold mb-3 text-primary">Gestor de Notas Ordinario</h5>
+                            <h5 class="fw-bold mb-3 text-primary" data-i18n="panelNotasTitle">Gestor de Notas Ordinario</h5>
                             <form id="form-cargar-nota" onsubmit="event.preventDefault();">
                                 <div class="mb-3">
-                                    <label class="form-label fw-semibold">ID Alumno</label>
-                                    <input type="number" class="form-control" id="carga-alumno-id" placeholder="Ej: 101">
+                                    <label class="form-label fw-semibold" data-i18n="cargaAlumnoId">ID Alumno</label>
+                                    <input type="number" class="form-control" id="carga-alumno-id" data-i18n-placeholder="cargaAlumnoHint" placeholder="Ej: 101">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label fw-semibold">Nota Obtenida</label>
-                                    <input type="number" class="form-control" id="carga-nota-valor" placeholder="1 al 10">
+                                    <label class="form-label fw-semibold" data-i18n="cargaNotaValor">Nota Obtenida</label>
+                                    <input type="number" class="form-control" id="carga-nota-valor" data-i18n-placeholder="cargaNotaHint" placeholder="1 al 10">
                                 </div>
-                                <button type="button" id="btn-cargar-nota" class="btn btn-gradient w-100 fw-bold">Registrar Nota en Acta</button>
+                                <button type="button" id="btn-cargar-nota" class="btn btn-gradient w-100 fw-bold" data-i18n="btnCargarNota">Registrar Nota en Acta</button>
                             </form>
                         </div>
 
                         <!-- PANEL 3: MOTOR DE PROMEDIOS -->
                         <div class="tab-pane fade" id="panel-promedios" role="tabpanel">
-                            <h5 class="fw-bold mb-3 text-primary">Cálculo de Promedios y Desglose</h5>
+                            <h5 class="fw-bold mb-3 text-primary" data-i18n="panelPromediosTitle">Cálculo de Promedios y Desglose</h5>
                             <div class="mb-3">
-                                <label class="form-label fw-semibold">ID Alumno a Consultar</label>
+                                <label class="form-label fw-semibold" data-i18n="promedioAlumnoId">ID Alumno a Consultar</label>
                                 <input type="number" class="form-control" id="promedio-alumno-id" value="777">
                             </div>
-                            <button type="button" id="btn-calcular-promedio" class="btn btn-gradient w-100 fw-bold mb-2">Calcular Condición y Promedio</button>
-                            <button type="button" id="btn-desglose-materia" class="btn class btn-outline-primary w-100 fw-bold btn-sm">Ver Desglose de Calificaciones</button>
+                            <button type="button" id="btn-calcular-promedio" class="btn btn-gradient w-100 fw-bold mb-2" data-i18n="btnCalcularPromedio">Calcular Condición y Promedio</button>
+                            <button type="button" id="btn-desglose-materia" class="btn class btn-outline-primary w-100 fw-bold btn-sm" data-i18n="btnDesgloseMateria">Ver Desglose de Calificaciones</button>
                         </div>
 
                         <!-- PANEL 4: SEGURIDAD Y CIERRE -->
                         <div class="tab-pane fade" id="panel-seguridad" role="tabpanel">
-                            <h5 class="fw-bold mb-3 text-primary">Auditor de Cierre de Actas</h5>
+                            <h5 class="fw-bold mb-3 text-primary" data-i18n="panelSeguridadTitle">Auditor de Cierre de Actas</h5>
                             <div class="mb-3">
-                                <label class="form-label fw-semibold">Estado de Acta del Ciclo</label>
+                                <label class="form-label fw-semibold" data-i18n="estadoActa">Estado de Acta del Ciclo</label>
                                 <select class="form-select" id="select-estado-acta">
-                                    <option value="Abierta">Abierta (Permite Edición)</option>
-                                    <option value="Cerrada">Cerrada (Bloqueada)</option>
+                                    <option value="Abierta" data-i18n="estadoActaAbierta">Abierta (Permite Edición)</option>
+                                    <option value="Cerrada" data-i18n="estadoActaCerrada">Cerrada (Bloqueada)</option>
                                 </select>
                             </div>
-                            <button type="button" id="btn-bloquear-acta" class="btn btn-danger w-100 fw-bold mb-2">Simular Cierre Definitivo de Acta</button>
-                            <button type="button" id="btn-test-seguridad" class="btn btn-outline-dark w-100 fw-bold btn-sm">Forzar Test de Ataque (Anti-Modificación)</button>
+                            <button type="button" id="btn-bloquear-acta" class="btn btn-danger w-100 fw-bold mb-2" data-i18n="btnBloquearActa">Simular Cierre Definitivo de Acta</button>
+                            <button type="button" id="btn-test-seguridad" class="btn btn-outline-dark w-100 fw-bold btn-sm" data-i18n="btnTestSeguridad">Forzar Test de Ataque (Anti-Modificación)</button>
                         </div>
 
                         <!-- PANEL 5: TUS MODIFICACIONES -->
                         <div class="tab-pane fade" id="panel-modificaciones" role="tabpanel">
-                            <h5 class="fw-bold mb-3 text-primary">Edición Extemporánea Justificada</h5>
+                            <h5 class="fw-bold mb-3 text-primary" data-i18n="panelModificacionesTitle">Edición Extemporánea Justificada</h5>
                             <form id="form-mod" onsubmit="event.preventDefault();">
                                 <div class="mb-2">
-                                    <label class="form-label small fw-semibold">ID Alumno</label>
+                                    <label class="form-label small fw-semibold" data-i18n="modAlumnoId">ID Alumno</label>
                                     <input type="number" class="form-control form-control-sm" id="mod-alumno-id" value="777">
                                 </div>
                                 <div class="mb-2">
-                                    <label class="form-label small fw-semibold">Nueva Nota</label>
-                                    <input type="number" class="form-control form-control-sm" id="mod-nota-nueva" placeholder="1-10">
+                                    <label class="form-label small fw-semibold" data-i18n="modNotaNueva">Nueva Nota</label>
+                                    <input type="number" class="form-control form-control-sm" id="mod-nota-nueva" data-i18n-placeholder="cargaNotaHint" placeholder="1-10">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label small fw-semibold">Justificación Obligatoria</label>
-                                    <textarea class="form-control form-control-sm" id="mod-motivo" rows="2" placeholder="Mínimo 15 caracteres..."></textarea>
+                                    <label class="form-label small fw-semibold" data-i18n="modMotivo">Justificación Obligatoria</label>
+                                    <textarea class="form-control form-control-sm" id="mod-motivo" rows="2" data-i18n-placeholder="modMotivoHint" placeholder="Mínimo 15 caracteres..."></textarea>
                                 </div>
-                                <button type="button" id="btn-aplicar-mod" class="btn btn-gradient w-100 fw-bold btn-sm mb-2">Aplicar Cambio Justificado</button>
+                                <button type="button" id="btn-aplicar-mod" class="btn btn-gradient w-100 fw-bold btn-sm mb-2" data-i18n="btnAplicarMod">Aplicar Cambio Justificado</button>
                             </form>
                         </div>
                         <div class="tab-pane fade prof-only d-none" id="panel-profesores" role="tabpanel">
-                            <h5 class="fw-bold mb-3 text-primary">Gestión de Profesores</h5>
+                            <h5 class="fw-bold mb-3 text-primary" data-i18n="panelProfesoresTitle">Gestión de Profesores</h5>
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="card p-3 border-0 shadow-sm">
-                                        <h6 class="mb-3">Crear cuenta de profesor</h6>
+                                        <h6 class="mb-3" data-i18n="profFormTitle">Crear cuenta de profesor</h6>
                                         <form id="form-crear-profesor" onsubmit="event.preventDefault();">
-                                            <div class="mb-2"><label class="form-label small">Nombre</label><input id="prof-name" class="form-control form-control-sm"></div>
-                                            <div class="mb-2"><label class="form-label small">Email</label><input id="prof-email" type="email" class="form-control form-control-sm"></div>
-                                            <div class="mb-2"><label class="form-label small">Usuario</label><input id="prof-username" class="form-control form-control-sm"></div>
-                                            <div class="mb-2"><label class="form-label small">Contraseña</label><input id="prof-password" type="password" class="form-control form-control-sm"></div>
-                                            <button id="btn-crear-profesor" type="button" class="btn btn-gradient btn-sm w-100">Crear Profesor</button>
+                                            <div class="mb-2"><label class="form-label small" data-i18n="profName">Nombre</label><input id="prof-name" class="form-control form-control-sm"></div>
+                                            <div class="mb-2"><label class="form-label small" data-i18n="profEmail">Email</label><input id="prof-email" type="email" class="form-control form-control-sm"></div>
+                                            <div class="mb-2"><label class="form-label small" data-i18n="profUsername">Usuario</label><input id="prof-username" class="form-control form-control-sm"></div>
+                                            <div class="mb-2"><label class="form-label small" data-i18n="profPassword">Contraseña</label><input id="prof-password" type="password" class="form-control form-control-sm"></div>
+                                            <button id="btn-crear-profesor" type="button" class="btn btn-gradient btn-sm w-100" data-i18n="btnCrearProfesor">Crear Profesor</button>
                                         </form>
                                         <div id="prof-create-feedback" class="small mt-2 text-muted"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card p-3 border-0 shadow-sm">
-                                        <h6 class="mb-3">Registrar Exámenes / Asistencias</h6>
+                                        <h6 class="mb-3" data-i18n="registroFormTitle">Registrar Exámenes / Asistencias</h6>
                                         <div class="mb-3">
-                                            <label class="form-label small">ID Alumno</label>
+                                            <label class="form-label small" data-i18n="registroAlumnoId">ID Alumno</label>
                                             <input id="registro-alumno-id" type="number" class="form-control form-control-sm">
                                         </div>
                                         <div class="mb-2">
-                                            <label class="form-label small">Materia</label>
+                                            <label class="form-label small" data-i18n="registroMateria">Materia</label>
                                             <input id="registro-materia" class="form-control form-control-sm">
                                         </div>
                                         <div class="mb-2">
-                                            <label class="form-label small">Fecha</label>
+                                            <label class="form-label small" data-i18n="registroFecha">Fecha</label>
                                             <input id="registro-fecha" type="date" class="form-control form-control-sm">
                                         </div>
                                         <div class="mb-2">
-                                            <label class="form-label small">Tipo</label>
+                                            <label class="form-label small" data-i18n="registroTipo">Tipo</label>
                                             <select id="registro-tipo" class="form-select form-select-sm">
-                                                <option value="exam">Examen</option>
-                                                <option value="attendance">Asistencia</option>
+                                                <option value="exam" data-i18n="registroExam">Examen</option>
+                                                <option value="attendance" data-i18n="registroAttendance">Asistencia</option>
                                             </select>
                                         </div>
                                         <div class="mb-2" id="registro-nota-group">
-                                            <label class="form-label small">Nota</label>
-                                            <input id="registro-nota" type="number" class="form-control form-control-sm" placeholder="0-10">
+                                            <label class="form-label small" data-i18n="registroNota">Nota</label>
+                                            <input id="registro-nota" type="number" class="form-control form-control-sm" data-i18n-placeholder="registroNotaHint" placeholder="0-10">
                                         </div>
                                         <div class="mb-2 d-none" id="registro-presente-group">
-                                            <label class="form-label small">Estado</label>
-                                            <select id="registro-presente" class="form-select form-select-sm"><option value="Present">Presente</option><option value="Absent">Ausente</option></select>
+                                            <label class="form-label small" data-i18n="registroPresente">Estado</label>
+                                            <select id="registro-presente" class="form-select form-select-sm"><option value="Present" data-i18n="registroPresent">Presente</option><option value="Absent" data-i18n="registroAbsent">Ausente</option></select>
                                         </div>
-                                        <button id="btn-registrar-acciones" type="button" class="btn btn-outline-primary btn-sm w-100">Registrar</button>
+                                        <button id="btn-registrar-acciones" type="button" class="btn btn-outline-primary btn-sm w-100" data-i18n="btnRegistrarAcciones">Registrar</button>
                                         <div id="registro-feedback" class="small mt-2 text-muted"></div>
                                     </div>
                                 </div>
@@ -284,14 +284,14 @@
             <div class="col-md-4">
                 <div class="card shadow-sm border-0 h-100">
                     <div class="card-header card-header-custom d-flex align-items-center justify-content-between">
-                        <span><i class="fa-solid fa-terminal me-2 text-success"></i> Salida de Consola Inmutable</span>
-                        <span class="badge bg-dark">Logs Activos</span>
+                        <span><i class="fa-solid fa-terminal me-2 text-success"></i> <span data-i18n="consoleTitle">Salida de Consola Inmutable</span></span>
+                        <span class="badge bg-dark" data-i18n="consoleBadge">Logs Activos</span>
                     </div>
                     <div class="card-body">
                         <div id="caja-negra" class="log-box mb-3">
                             [SIU Quechua] Dashboard montado. Selecciona un módulo para ejecutar sus clases JS.
                         </div>
-                        <button type="button" id="btn-limpiar-consola" class="btn btn-outline-secondary w-100 btn-sm fw-bold"><i class="fa-solid fa-trash-can me-1"></i> Limpiar Consola</button>
+                        <button type="button" id="btn-limpiar-consola" class="btn btn-outline-secondary w-100 btn-sm fw-bold" data-i18n="btnLimpiarConsola"><i class="fa-solid fa-trash-can me-1"></i> Limpiar Consola</button>
                     </div>
                 </div>
             </div>
