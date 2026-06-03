@@ -1,0 +1,4 @@
+[
+  { "id": 777, "name": "Ana Pérez", "course": "Alfabetización Digital", "photo": "imgs/avatar1.jpg" },
+  { "id": 101, "name": "Juan Gomez", "course": "Introducción al Análisis Sistémico", "photo": "imgs/avatar2.jpg" }
+]

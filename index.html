@@ -1,12 +1,439 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIU Quechua - Dashboard Completo</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Íconos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="imgs/images.png" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
-    <title>SIU Quechua</title>
 </head>
 <body>
-    
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom shadow-sm mb-4">
+        <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
+            <a class="navbar-brand fw-bold" href="#"><img src="imgs/Tawa_chakana.png" class="tawa"> SIU Quechua - Panel de Control Total</a>
+            <div class="d-flex align-items-center">
+                <button id="btn-open-alumno" class="btn btn-outline-light btn-sm me-2" disabled type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAlumno" aria-controls="offcanvasAlumno">
+                    <i class="fa-solid fa-user-graduate me-1"></i> Vista Alumno
+                </button>
+                <button id="btn-open-profile" class="btn btn-outline-light btn-sm me-2" data-bs-toggle="modal" data-bs-target="#profileModal" disabled>
+                    <i class="fa-solid fa-user me-1"></i> Mi Perfil
+                </button>
+                <button id="btn-open-settings" class="btn btn-outline-light btn-sm me-2" data-bs-toggle="modal" data-bs-target="#settingsModal" type="button"><i class="fa-solid fa-gear me-1"></i> Ajustes</button>
+                <button id="btn-logout" class="btn btn-outline-light btn-sm me-2" type="button"><i class="fa-solid fa-right-from-bracket me-1"></i>Cerrar sesión</button>
+                <span id="nav-usuario" class="text-light ms-2 small"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid px-4">
+        <div id="student-dashboard" class="d-none">
+            <div class="row g-4">
+                <div class="col-12">
+                    <div class="card shadow-sm border-0 p-4 student-hero-card">
+                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-4">
+                            <div>
+                                <span id="student-panel-badge" class="badge bg-secondary mb-2">Panel Estudiante</span>
+                                <h3 class="fw-bold mb-1"><span id="student-welcome">Bienvenido,</span> <span id="student-name">Estudiante</span></h3>
+                                <p class="text-muted mb-0" id="student-course">Tus materias, notas y responsabilidades académicas aquí.</p>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <img id="student-avatar" class="student-avatar" src="imgs/avatar-placeholder.png" alt="Foto alumno">
+                                <div class="text-end">
+                                    <div class="small text-muted">Rol</div>
+                                    <div id="student-role" class="fw-bold">Alumno</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card student-card shadow-sm border-0 p-3">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div><h6 class="mb-1">Mi rendimiento</h6><small class="text-muted">Promedio general</small></div>
+                            <div class="display-6 fw-bold text-primary" id="student-average">-</div>
+                        </div>
+                        <div id="student-grades-summary" class="small text-muted">Busca tu ID para ver tus calificaciones.</div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card student-card shadow-sm border-0 p-3">
+                        <h6 id="student-exams-title" class="mb-3">Próximos exámenes</h6>
+                        <div id="student-exams-summary" class="small text-muted">Sin exámenes disponibles.</div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card student-card shadow-sm border-0 p-3">
+                        <h6 id="student-attendance-title" class="mb-3">Asistencias</h6>
+                        <div id="student-attendance-summary" class="small text-muted">Sin inasistencias registradas.</div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="card student-card shadow-sm border-0 p-3">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div><h6 id="student-horario-title" class="mb-1">Horario semanal</h6><small class="text-muted">Repasa tus clases</small></div>
+                            <button id="student-open-offcanvas" class="btn btn-sm btn-outline-primary">Ver detalles</button>
+                        </div>
+                        <div id="student-schedule-summary" class="small text-muted">Cargando horarios...</div>
+                        <div class="mt-3">
+                            <button id="student-add-schedule" class="btn btn-sm btn-outline-secondary">Agregar clase</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="card student-card shadow-sm border-0 p-3">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div><h6 id="student-certificados-title" class="mb-1">Certificados</h6><small class="text-muted">Descarga tus constancias</small></div>
+                            <button id="student-request-certificate" class="btn btn-sm btn-outline-success">Solicitar</button>
+                        </div>
+                        <div id="student-certificates-summary" class="small text-muted">No tienes certificados recientes.</div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="card student-card shadow-sm border-0 p-3">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div><h6 id="student-config-title" class="mb-1">Configuraciones</h6><small class="text-muted">Preferencias personales</small></div>
+                        </div>
+                        <div class="row g-2 align-items-center">
+                            <div class="col-12 col-md-6">
+                                <label id="language-switcher-label" class="form-label small">Cambiar idioma</label>
+                                <select id="language-switcher" class="form-select form-select-sm">
+                                    <option value="es">Español</option>
+                                    <option value="qu">Quechua</option>
+                                    <option value="gn">Guaraní</option>
+                                    <option value="arn">Mapuche</option>
+                                    <option value="ay">Aimara</option>
+                                    <option value="ar">Arameo</option>
+                                    <option value="so">Somalí</option>
+                                    <option value="la">Latín</option>
+                                    <option value="vl">Villero</option>
+                                    <option value="pp">PaiPai</option>
+                                    <option value="dog">Idioma Perro</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-4">
+            <!-- MENÚ DE SECCIONES (IZQUIERDA) -->
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0 p-3">
+                    <h6 class="text-muted text-uppercase fw-bold mb-3 small">Módulos del Sistema</h6>
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <button class="nav-link active text-start mb-2" id="tab-materia" data-bs-toggle="pill" data-bs-target="#panel-materia" type="button"><i class="fa-solid fa-folder-plus me-2"></i> 1. Creación de Materias</button>
+                        <button class="nav-link text-start mb-2" id="tab-notas" data-bs-toggle="pill" data-bs-target="#panel-notas" type="button"><i class="fa-solid fa-file-signature me-2"></i> 2. Carga de Notas Base</button>
+                        <button class="nav-link text-start mb-2" id="tab-promedios" data-bs-toggle="pill" data-bs-target="#panel-promedios" type="button"><i class="fa-solid fa-calculator me-2"></i> 3 y 4. Motor de Promedios</button>
+                        <button class="nav-link text-start mb-2" id="tab-seguridad" data-bs-toggle="pill" data-bs-target="#panel-seguridad" type="button"><i class="fa-solid fa-shield-halved me-2"></i> 5 y 6. Cierre y Seguridad</button>
+                        <button class="nav-link text-start mb-2" id="tab-modificaciones" data-bs-toggle="pill" data-bs-target="#panel-modificaciones" type="button"><i class="fa-solid fa-user-pen me-2"></i> 7 y 8. Modificaciones</button>
+                        <button class="nav-link text-start mb-2 prof-only d-none" id="tab-profesores" data-bs-toggle="pill" data-bs-target="#panel-profesores" type="button"><i class="fa-solid fa-chalkboard-user me-2"></i> Gestión Profesor</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTENIDO DINÁMICO (CENTRO) -->
+            <div class="col-md-5">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="tab-content p-4" id="v-pills-tabContent">
+                        
+                        <!-- PANEL 1: CREACIÓN DE MATERIAS -->
+                        <div class="tab-pane fade show rel active" id="panel-materia" role="tabpanel">
+                            <h5 class="fw-bold mb-3 text-primary">Motor de Creación y Configuración</h5>
+                            <form id="form-crear-materia" onsubmit="event.preventDefault();">
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Nombre de la Materia</label>
+                                    <input type="text" class="form-control" id="materia-nombre" value="Introducción al Análisis Sistémico">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Escala Mínima / Máxima</label>
+                                    <div class="row">
+                                        <div class="col"><input type="number" class="form-control" id="materia-min" value="1"></div>
+                                        <div class="col"><input type="number" class="form-control" id="materia-max" value="10"></div>
+                                    </div>
+                                </div>
+                                <button type="button" id="btn-crear-materia" class="btn btn-gradient w-100 fw-bold">Configurar e Instanciar Materia</button>
+                            </form>
+                        </div>
+
+                        <!-- PANEL 2: CARGA DE NOTAS BASE -->
+                        <div class="tab-pane fade" id="panel-notas" role="tabpanel">
+                            <h5 class="fw-bold mb-3 text-primary">Gestor de Notas Ordinario</h5>
+                            <form id="form-cargar-nota" onsubmit="event.preventDefault();">
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">ID Alumno</label>
+                                    <input type="number" class="form-control" id="carga-alumno-id" placeholder="Ej: 101">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Nota Obtenida</label>
+                                    <input type="number" class="form-control" id="carga-nota-valor" placeholder="1 al 10">
+                                </div>
+                                <button type="button" id="btn-cargar-nota" class="btn btn-gradient w-100 fw-bold">Registrar Nota en Acta</button>
+                            </form>
+                        </div>
+
+                        <!-- PANEL 3: MOTOR DE PROMEDIOS -->
+                        <div class="tab-pane fade" id="panel-promedios" role="tabpanel">
+                            <h5 class="fw-bold mb-3 text-primary">Cálculo de Promedios y Desglose</h5>
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">ID Alumno a Consultar</label>
+                                <input type="number" class="form-control" id="promedio-alumno-id" value="777">
+                            </div>
+                            <button type="button" id="btn-calcular-promedio" class="btn btn-gradient w-100 fw-bold mb-2">Calcular Condición y Promedio</button>
+                            <button type="button" id="btn-desglose-materia" class="btn class btn-outline-primary w-100 fw-bold btn-sm">Ver Desglose de Calificaciones</button>
+                        </div>
+
+                        <!-- PANEL 4: SEGURIDAD Y CIERRE -->
+                        <div class="tab-pane fade" id="panel-seguridad" role="tabpanel">
+                            <h5 class="fw-bold mb-3 text-primary">Auditor de Cierre de Actas</h5>
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Estado de Acta del Ciclo</label>
+                                <select class="form-select" id="select-estado-acta">
+                                    <option value="Abierta">Abierta (Permite Edición)</option>
+                                    <option value="Cerrada">Cerrada (Bloqueada)</option>
+                                </select>
+                            </div>
+                            <button type="button" id="btn-bloquear-acta" class="btn btn-danger w-100 fw-bold mb-2">Simular Cierre Definitivo de Acta</button>
+                            <button type="button" id="btn-test-seguridad" class="btn btn-outline-dark w-100 fw-bold btn-sm">Forzar Test de Ataque (Anti-Modificación)</button>
+                        </div>
+
+                        <!-- PANEL 5: TUS MODIFICACIONES -->
+                        <div class="tab-pane fade" id="panel-modificaciones" role="tabpanel">
+                            <h5 class="fw-bold mb-3 text-primary">Edición Extemporánea Justificada</h5>
+                            <form id="form-mod" onsubmit="event.preventDefault();">
+                                <div class="mb-2">
+                                    <label class="form-label small fw-semibold">ID Alumno</label>
+                                    <input type="number" class="form-control form-control-sm" id="mod-alumno-id" value="777">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label small fw-semibold">Nueva Nota</label>
+                                    <input type="number" class="form-control form-control-sm" id="mod-nota-nueva" placeholder="1-10">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-semibold">Justificación Obligatoria</label>
+                                    <textarea class="form-control form-control-sm" id="mod-motivo" rows="2" placeholder="Mínimo 15 caracteres..."></textarea>
+                                </div>
+                                <button type="button" id="btn-aplicar-mod" class="btn btn-gradient w-100 fw-bold btn-sm mb-2">Aplicar Cambio Justificado</button>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade prof-only d-none" id="panel-profesores" role="tabpanel">
+                            <h5 class="fw-bold mb-3 text-primary">Gestión de Profesores</h5>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="card p-3 border-0 shadow-sm">
+                                        <h6 class="mb-3">Crear cuenta de profesor</h6>
+                                        <form id="form-crear-profesor" onsubmit="event.preventDefault();">
+                                            <div class="mb-2"><label class="form-label small">Nombre</label><input id="prof-name" class="form-control form-control-sm"></div>
+                                            <div class="mb-2"><label class="form-label small">Email</label><input id="prof-email" type="email" class="form-control form-control-sm"></div>
+                                            <div class="mb-2"><label class="form-label small">Usuario</label><input id="prof-username" class="form-control form-control-sm"></div>
+                                            <div class="mb-2"><label class="form-label small">Contraseña</label><input id="prof-password" type="password" class="form-control form-control-sm"></div>
+                                            <button id="btn-crear-profesor" type="button" class="btn btn-gradient btn-sm w-100">Crear Profesor</button>
+                                        </form>
+                                        <div id="prof-create-feedback" class="small mt-2 text-muted"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card p-3 border-0 shadow-sm">
+                                        <h6 class="mb-3">Registrar Exámenes / Asistencias</h6>
+                                        <div class="mb-3">
+                                            <label class="form-label small">ID Alumno</label>
+                                            <input id="registro-alumno-id" type="number" class="form-control form-control-sm">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label small">Materia</label>
+                                            <input id="registro-materia" class="form-control form-control-sm">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label small">Fecha</label>
+                                            <input id="registro-fecha" type="date" class="form-control form-control-sm">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label small">Tipo</label>
+                                            <select id="registro-tipo" class="form-select form-select-sm">
+                                                <option value="exam">Examen</option>
+                                                <option value="attendance">Asistencia</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-2" id="registro-nota-group">
+                                            <label class="form-label small">Nota</label>
+                                            <input id="registro-nota" type="number" class="form-control form-control-sm" placeholder="0-10">
+                                        </div>
+                                        <div class="mb-2 d-none" id="registro-presente-group">
+                                            <label class="form-label small">Estado</label>
+                                            <select id="registro-presente" class="form-select form-select-sm"><option value="Present">Presente</option><option value="Absent">Ausente</option></select>
+                                        </div>
+                                        <button id="btn-registrar-acciones" type="button" class="btn btn-outline-primary btn-sm w-100">Registrar</button>
+                                        <div id="registro-feedback" class="small mt-2 text-muted"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- ALERTAS GLOBALES DEBAJO DE LOS FORMULARIOS -->
+                    <div id="alerta-sistema" class="alert d-none mx-4 mb-4 text-center fw-semibold" role="alert"></div>
+                </div>
+            </div>
+
+            <!-- CAJA NEGRA TERMINAL (DERECHA) -->
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header card-header-custom d-flex align-items-center justify-content-between">
+                        <span><i class="fa-solid fa-terminal me-2 text-success"></i> Salida de Consola Inmutable</span>
+                        <span class="badge bg-dark">Logs Activos</span>
+                    </div>
+                    <div class="card-body">
+                        <div id="caja-negra" class="log-box mb-3">
+                            [SIU Quechua] Dashboard montado. Selecciona un módulo para ejecutar sus clases JS.
+                        </div>
+                        <button type="button" id="btn-limpiar-consola" class="btn btn-outline-secondary w-100 btn-sm fw-bold"><i class="fa-solid fa-trash-can me-1"></i> Limpiar Consola</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- OFFCANVAS: VISTA DEL ALUMNO -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAlumno" aria-labelledby="offcanvasAlumnoLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasAlumnoLabel"><i class="fa-solid fa-user-graduate me-2"></i> Vista del Alumno</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body offcanvas-alumno p-3">
+        <div class="mb-3">
+          <label class="form-label fw-semibold">ID Alumno</label>
+          <div class="input-group">
+            <input id="alumno-id-input" type="number" class="form-control" placeholder="Ej: 777">
+            <button id="alumno-buscar-btn" class="btn btn-gradient">Buscar</button>
+          </div>
+        </div>
+        <div id="alumno-result" class="mt-3">
+          <div id="alumno-summary" class="alumno-summary mb-2"></div>
+
+          <ul class="nav nav-tabs mb-2" id="alumnoTabs" role="tablist">
+            <li class="nav-item" role="presentation"><button class="nav-link active" id="tab-notas-alumno" data-bs-toggle="tab" data-bs-target="#tabNotas" type="button">Notas</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link" id="tab-inasistencias" data-bs-toggle="tab" data-bs-target="#tabInasistencias" type="button">Inasistencias</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link" id="tab-examenes" data-bs-toggle="tab" data-bs-target="#tabExamenes" type="button">Exámenes</button></li>
++          <li class="nav-item" role="presentation"><button class="nav-link" id="tab-horarios" data-bs-toggle="tab" data-bs-target="#tabHorarios" type="button">Horarios</button></li>
+          </ul>
+
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="tabNotas" role="tabpanel">
+              <div class="table-responsive">
+                <table class="table table-sm" id="alumno-result-table">
+                  <thead><tr><th>Materia</th><th>Evaluación</th><th>Nota</th></tr></thead>
+                  <tbody id="alumno-result-body"><tr><td colspan="3">Ingrese un ID y presione Buscar.</td></tr></tbody>
+                </table>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="tabInasistencias" role="tabpanel">
+              <div id="inasistencias-list" class="small text-muted">Sin registros.</div>
+            </div>
+            <div class="tab-pane fade" id="tabExamenes" role="tabpanel">
+              <div id="examenes-list" class="small text-muted">Sin registros.</div>
+            </div>
+            <div class="tab-pane fade" id="tabHorarios" role="tabpanel">
+              <div id="horarios-list" class="small text-muted">Sin registros.</div>
+            </div>
+          </div>
+
+          <div class="d-flex gap-2 mt-3">
+            <button id="alumno-export-btn" class="btn btn-outline-primary btn-sm">Exportar CSV</button>
+            <button id="alumno-print-btn" class="btn btn-outline-secondary btn-sm ms-auto">Imprimir</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE MODAL -->
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="profileModalLabel">Mi Perfil</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="profile-form">
+              <div class="mb-3 d-flex gap-3 align-items-center">
+                <img id="profile-photo-preview" src="imgs/avatar-placeholder.png" alt="foto" style="width:64px;height:64px;border-radius:8px;object-fit:cover">
+                <input id="profile-photo" type="file" accept="image/*" class="form-control form-control-sm">
+              </div>
+              <div class="mb-2"><label class="form-label small">Nombre</label><input id="profile-name" class="form-control form-control-sm"></div>
+              <div class="mb-2"><label class="form-label small">Email</label><input id="profile-email" type="email" class="form-control form-control-sm"></div>
+              <div class="mb-2"><label class="form-label small">Contraseña (nueva)</label><input id="profile-password" type="password" class="form-control form-control-sm"></div>
+              <div class="d-grid"><button id="profile-save" class="btn btn-gradient">Guardar</button></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SETTINGS MODAL -->
+    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="settingsModalLabel">Ajustes del Sistema</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <form id="settings-form">
+              <div class="mb-3">
+                <label id="settings-language-label" class="form-label small">Idioma de la aplicación</label>
+                <select id="settings-language" class="form-select form-select-sm">
+                  <option value="es">Español</option>
+                  <option value="qu">Quechua</option>
+                  <option value="gn">Guaraní</option>
+                  <option value="arn">Mapuche</option>
+                  <option value="ay">Aimara</option>
+                  <option value="ar">Arameo</option>
+                  <option value="so">Somalí</option>
+                  <option value="la">Latín</option>
+                  <option value="vl">Villero</option>
+                  <option value="pp">PaiPai</option>
+                  <option value="dog">Idioma Perro</option>
+                </select>
+              </div>
+              <div class="mb-3 form-check form-switch">
+                <input id="settings-darkmode" class="form-check-input" type="checkbox">
+                <label id="settings-theme-label" class="form-check-label small" for="settings-darkmode">Modo oscuro</label>
+              </div>
+              <div class="mb-3 form-check form-switch">
+                <input id="settings-notifications" class="form-check-input" type="checkbox">
+                <label id="settings-notifications-label" class="form-check-label small" for="settings-notifications">Notificaciones activas</label>
+              </div>
+              <div class="d-grid">
+                <button id="settings-save" type="button" class="btn btn-gradient">Guardar ajustes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- CARGA FLEXIBLE DE SCRIPTS DE LA CAPTURA DE PANTALLA -->
+    <script src="Motor de Creación y Configuración de M...js"></script> 
+    <script src="GestorDeNotas.js"></script>
+    <script src="desglose-de-calificaciones-por-materia.js"></script>
+    <script src="motor-de-cálculo-de-promedio.js"></script>
+    <script src="05-auditorde-cierre-de-actas.js"></script>
+    <script src="filtro-de-seguridad-anti-modificación.js"></script>
+    <script src="modificacion-notas-justificada.js"></script>
+    <script src="historial-auditoria-logs.js"></script>
+
+    <script src="auth-guard.js"></script>
+    <script src="profile.js"></script>
+    <script src="alumno-view.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>

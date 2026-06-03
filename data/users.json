@@ -1,0 +1,4 @@
+[
+  { "id": 1, "username": "profesor1", "password": "profpass", "role": "professor", "name": "Profesor López", "email": "profe@example.com", "photo": "imgs/prof-avatar.jpg" },
+  { "id": 777, "username": "alumno777", "password": "alupass", "role": "student", "name": "Ana Pérez", "email": "ana.perez@example.com", "photo": "imgs/avatar1.jpg" }
+]
