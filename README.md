@@ -89,4 +89,33 @@ Criterios de Aceptación
 
         ENTONCES el sistema debe actualizar la nota, recalcular el promedio del estudiante y registrar el cambio en el historial de auditoría del sistema.
 
+        +------------------------------------------------------------------+
+       |                  SISTEMA DE GESTIÓN ACADÉMICA                    |
+       |                                                                  |
+       |  ( Registrar Nota ) <------------+                               |
+       |         |                        | (include)                     |
+       |         v                        |                               |
+       |  <<extend>> (Validar Rango)      |                               |
+       |         |                        |                               |
+       |         +--> [Nota Válida] ----> |                               |
+       |         |    (Muestra Éxito)     |                               |
+       |         |                        |                               |
+       |         +--> [Nota Inválida]     |                               |
+       |              (Muestra Error)     |                               |
+       |                                  |                               |
+[Profesor]---> ( Modificar Nota ) --------+                               |
+       |         |                                                        |
+       |         v (include)                                              |
+       |  ( Justificar Cambio )                                           |
+       |                                                                  |
+       |---> ( Cerrar Acta )                                              |
+       |         |                                                        |
+       |         v (include)                                              |
+       |  ( Bloquear Edición y Enviar al Boletín )                        |
+       |                                                                  |
+       |                                                                  |
+[Estudiante]-> ( Consultar Notas Periodo Actual )                          |
+       |                                                                  |
+       +------------------------------------------------------------------+
+
         https://gemini.google.com/app/5e6c541abfe928ef?android-min-version=301356232&ios-min-version=322.0&is_sa=1&campaign_id=gemini_overview_page&utm_source=gemini&utm_medium=web&utm_campaign=microsite_gemini_about_page&pt=9008&mt=8&ct=gemini_overview_page&hl=es-ES&icid=microsite_gemini_about_page&_gl=1*pvedul*_gcl_au*MTcxODU1NjE2NC4xNzc5Mjg3NTk2*_ga*MTA4NTY0MTI2MC4xNzc5Mjg3NTk2*_ga_WC57KJ50ZZ*czE3ODAyNjM5ODUkbzQkZzAkdDE3ODAyNjM5ODUkajYwJGwwJGgw
